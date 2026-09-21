@@ -103,7 +103,7 @@ export default function ProjectPage() {
               <img
                 src={project.storyboard}
                 alt={text(project.storyboardAlt)}
-                className="block aspect-square w-full object-cover"
+                className="block h-auto w-full object-contain"
               />
             </div>
             <figcaption className="mt-5 flex items-baseline justify-between gap-6 text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
