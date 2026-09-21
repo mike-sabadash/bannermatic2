@@ -1,4 +1,5 @@
 name: Deploy Bannermatic Production
+# Restored production deployment for bannermatic.rechord.online
 
 on:
   push:
