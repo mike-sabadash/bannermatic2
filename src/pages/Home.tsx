@@ -6,7 +6,7 @@ import Contact from '../sections/Contact'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f7f5f0]">
+    <div className="min-h-screen bg-background transition-colors duration-500">
       <Header />
       <main>
         <Hero />

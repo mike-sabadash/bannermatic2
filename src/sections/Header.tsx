@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-
-const links = [
-  { label: 'Work', hash: 'work' },
-  { label: 'Process', hash: 'process' },
-  { label: 'Contact', hash: 'contact' },
-]
+import { usePreferences } from '../lib/preferences'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const { pathname } = useLocation()
   const navigate = useNavigate()
+  const { language, setLanguage, theme, toggleTheme } = usePreferences()
+  const links = [
+    { label: language === 'ru' ? 'Кейсы' : 'Work', hash: 'work' },
+    { label: language === 'ru' ? 'Процесс' : 'Process', hash: 'process' },
+    { label: language === 'ru' ? 'Контакт' : 'Contact', hash: 'contact' },
+  ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -36,27 +37,52 @@ export default function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        scrolled ? 'bg-[#f7f5f0]/90 backdrop-blur-sm' : 'bg-transparent'
+        scrolled ? 'bg-background/90 backdrop-blur-sm' : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto flex max-w-[1600px] items-baseline justify-between gap-4 px-5 py-5 sm:px-6 sm:py-6 md:px-12 md:py-8">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-5 py-5 sm:px-6 sm:py-6 md:px-12 md:py-8">
         <button
           onClick={() => goTo('top')}
-          className="whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] text-[#141414] sm:text-[12px] sm:tracking-[0.18em] md:text-[13px] md:tracking-[0.22em]"
+          className="whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] text-foreground sm:text-[12px] sm:tracking-[0.18em] md:text-[13px] md:tracking-[0.22em]"
         >
           Bannermatic
         </button>
-        <nav className="flex items-baseline gap-4 sm:gap-6 md:gap-10">
+        <div className="flex items-center gap-3 sm:gap-5 md:gap-8">
+        <nav className="hidden items-baseline gap-4 sm:flex sm:gap-6 md:gap-10">
           {links.map((link) => (
             <button
               key={link.hash}
               onClick={() => goTo(link.hash)}
-              className="link-sweep whitespace-nowrap text-[11px] uppercase tracking-[0.14em] text-[#6f6c64] transition-colors duration-300 hover:text-[#141414] sm:text-[12px] sm:tracking-[0.18em] md:text-[13px] md:tracking-[0.22em]"
+              className="link-sweep whitespace-nowrap text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors duration-300 hover:text-foreground sm:text-[12px] sm:tracking-[0.18em] md:text-[13px] md:tracking-[0.22em]"
             >
               {link.label}
             </button>
           ))}
         </nav>
+        <div className="flex items-center gap-1 border-l border-border pl-3 sm:pl-5">
+          <div className="flex" aria-label={language === 'ru' ? 'Выбор языка' : 'Language'}>
+            {(['en', 'ru'] as const).map((option) => (
+              <button
+                key={option}
+                onClick={() => setLanguage(option)}
+                aria-pressed={language === option}
+                className={`px-1.5 py-1 text-[10px] uppercase tracking-[0.14em] transition-colors sm:text-[11px] ${
+                  language === option ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={toggleTheme}
+            aria-label={language === 'ru' ? 'Переключить тему' : 'Toggle theme'}
+            className="ml-1 grid size-7 place-items-center rounded-full border border-border text-sm text-foreground transition-colors hover:bg-muted"
+          >
+            <span aria-hidden="true">{theme === 'dark' ? '☼' : '◐'}</span>
+          </button>
+        </div>
+        </div>
       </div>
     </header>
   )
