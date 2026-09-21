@@ -90,4 +90,40 @@ export const projects: Project[] = [
       ],
     },
   },
+  {
+    slug: 'lada-vesta-sw-cross',
+    name: 'LADA Vesta SW Cross',
+    client: 'LADA',
+    type: { en: 'Lifestyle Product Campaign', ru: 'Имиджевая продуктовая кампания' },
+    channels: 'Display / Rich Media / Mobile',
+    year: '2017',
+    master: '300 × 600 / 4 frames',
+    delivery: { en: 'Animated feature-led banner system', ru: 'Анимированная баннерная система о продукте' },
+    image: '/projects/lada-vesta-sw-cross-keyvisual.png',
+    imageAlt: {
+      en: 'Orange LADA Vesta SW Cross driving along a coastal road beneath red hang gliders',
+      ru: 'Оранжевая LADA Vesta SW Cross на прибрежной дороге под красными дельтапланами',
+    },
+    storyboard: '/projects/lada-vesta-sw-cross-storyboard.png',
+    storyboardAlt: {
+      en: 'Four-frame animation storyboard for the LADA Vesta SW Cross digital campaign',
+      ru: 'Четырёхкадровая раскадровка digital-кампании LADA Vesta SW Cross',
+    },
+    lead: {
+      en: 'An invitation to move, structured into a clear product story for every placement.',
+      ru: 'Приглашение двигаться вперёд, собранное в ясную продуктовую историю для каждого размещения.',
+    },
+    body: {
+      en: [
+        '“Say yes to life” sets the emotional direction: an open coastal road, hang gliders, bright air and a Vesta SW Cross moving toward new horizons. The campaign takes one generous lifestyle scene and gives it a simple, legible digital narrative.',
+        'The vertical master moves from the key visual to the reasons to choose the car: organised luggage space, multimedia with navigation and a rear-view camera, then heated front and rear seats. Each benefit has its own frame, yet the orange vehicle, open-road energy and LADA signature keep the system visually connected.',
+        'We treated the work as a production system rather than a single banner: a clear entry frame, feature-led middle scenes, a recognisable closing image and layouts that protect the copy, product and brand at compact display sizes. The result is one campaign idea that stays readable while adapting to different placements.',
+      ],
+      ru: [
+        '«Скажи жизни да!» задаёт эмоциональный вектор кампании: открытая прибрежная дорога, дельтапланы, воздух и Vesta SW Cross, движущаяся к новым горизонтам. Один большой lifestyle-вижуал мы превратили в простую и хорошо читаемую digital-историю.',
+        'Вертикальный мастер проходит путь от key visual к причинам выбрать автомобиль: универсальный багажник с органайзером, мультимедиа с навигацией и камерой заднего вида, затем подогрев передних и задних сидений. Каждый аргумент получил свой кадр, а оранжевый автомобиль, энергия дороги и LADA-подпись связывают систему воедино.',
+        'Мы собирали не одиночный баннер, а production-систему: ясный стартовый кадр, продуктовые сцены в середине, узнаваемый финал и компоновки, которые сохраняют копирайт, автомобиль и бренд на компактных display-размещениях. Так одна идея кампании остаётся читаемой при адаптации под разные площадки.',
+      ],
+    },
+  },
 ]
