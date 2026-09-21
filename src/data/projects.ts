@@ -27,12 +27,12 @@ export const projects: Project[] = [
     year: '2026',
     master: '300 × 600 / 4 sec',
     delivery: { en: 'Multi-format campaign system', ru: 'Мультиформатная система кампании' },
-    image: '/projects/toyota-lc200-keyvisual.webp',
+    image: '/projects/toyota-lc200-keyvisual.png',
     imageAlt: {
       en: 'Black Toyota Land Cruiser 200 climbing a rocky mountain ridge under dramatic clouds',
       ru: 'Чёрный Toyota Land Cruiser 200 поднимается по горному хребту под драматичным небом',
     },
-    storyboard: '/projects/toyota-lc200-storyboard.webp',
+    storyboard: '/projects/toyota-lc200-storyboard.png',
     storyboardAlt: {
       en: 'Six-frame animation storyboard for the Toyota Land Cruiser 200 digital campaign',
       ru: 'Шестикадровая раскадровка анимации digital-кампании Toyota Land Cruiser 200',
