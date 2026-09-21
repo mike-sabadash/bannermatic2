@@ -6,6 +6,16 @@
     <meta name="description" content="Bannermatic turns campaign masters and media plans into animated, platform-ready banner systems across every format." />
     <meta name="theme-color" content="#f7f5f0" />
     <title>Bannermatic — Digital Campaign Production</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('bannermatic-theme')
+        const isDark = savedTheme
+          ? savedTheme === 'dark'
+          : window.matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.classList.toggle('dark', isDark)
+        document.documentElement.style.colorScheme = isDark ? 'dark' : 'light'
+      } catch (_) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
