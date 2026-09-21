@@ -1,0 +1,61 @@
+name: Deploy Bannermatic Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: bannermatic-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify deploy secret exists
+        run: |
+          if [ -z "${{ secrets.BANNERMATIC_SERVER_SSH_KEY }}" ]; then
+            echo "BANNERMATIC_SERVER_SSH_KEY is not configured" >&2
+            exit 1
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+          test -f dist/index.html
+
+      - name: Configure SSH
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "${{ secrets.BANNERMATIC_SERVER_SSH_KEY }}" > ~/.ssh/bannermatic_server
+          chmod 600 ~/.ssh/bannermatic_server
+          ssh-keyscan -p 22 213.182.208.29 >> ~/.ssh/known_hosts
+
+      - name: Backup current production
+        run: |
+          ssh -i ~/.ssh/bannermatic_server -p 22 -o IdentitiesOnly=yes root@213.182.208.29 \
+            'set -e; test -d /var/www/bannermatic; rm -rf /var/www/bannermatic-backup-ci; cp -a /var/www/bannermatic /var/www/bannermatic-backup-ci'
+
+      - name: Deploy static build
+        run: |
+          rsync -az --delete -e "ssh -i ~/.ssh/bannermatic_server -p 22 -o IdentitiesOnly=yes" \
+            dist/ root@213.182.208.29:/var/www/bannermatic/
+
+      - name: Verify production
+        run: |
+          ssh -i ~/.ssh/bannermatic_server -p 22 -o IdentitiesOnly=yes root@213.182.208.29 'nginx -t'
+          curl -fsSI --max-time 30 https://bannermatic.rechord.online/
+          curl -fsS --max-time 30 https://bannermatic.rechord.online/ | grep -q '<div id="root"></div>'
+          echo 'BANNERMATIC_PRODUCTION_OK'
