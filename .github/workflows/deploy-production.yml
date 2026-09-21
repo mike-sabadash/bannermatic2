@@ -1,6 +1,7 @@
 name: Deploy Bannermatic Production
 # Production deployment for bannermatic.rechord.online
-# Trigger after SSH secret configuration
+# Trigger production after SSH secret configuration
+# deploy run 4
 
 on:
   push:
