@@ -6,7 +6,7 @@ export default function Works() {
   return (
     <section id="work" className="mx-auto max-w-[1600px] scroll-mt-24 px-5 py-28 sm:px-6 sm:py-32 md:px-12 md:py-56">
       <Reveal className="mb-14 flex items-baseline justify-between md:mb-20">
-        <h2 className="text-[12px] uppercase tracking-[0.3em] text-[#6f6c64]">Selected Work</h2>
+        <h2 className="text-[12px] uppercase tracking-[0.3em] text-[#6f6c64]">Campaign studies</h2>
         <span className="text-[12px] uppercase tracking-[0.3em] text-[#6f6c64]">
           ({String(projects.length).padStart(2, '0')})
         </span>
@@ -27,14 +27,14 @@ export default function Works() {
                   {project.name}
                 </span>
                 <span className="mt-1 block text-[12px] tracking-[0.08em] text-[#6f6c64] lg:hidden">
-                  {project.type} — {project.location}
+                  {project.type} — {project.channels}
                 </span>
               </span>
               <span className="hidden text-[13px] tracking-[0.08em] text-[#6f6c64] lg:block">
                 {project.type}
               </span>
               <span className="hidden text-[13px] tracking-[0.08em] text-[#6f6c64] lg:block">
-                {project.location}
+                {project.channels}
               </span>
               <span className="text-[13px] tabular-nums tracking-[0.08em] text-[#6f6c64]">
                 {project.year}

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router'
 
 const links = [
   { label: 'Work', hash: 'work' },
-  { label: 'Studio', hash: 'studio' },
+  { label: 'Process', hash: 'process' },
   { label: 'Contact', hash: 'contact' },
 ]
 
@@ -44,7 +44,7 @@ export default function Header() {
           onClick={() => goTo('top')}
           className="whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] text-[#141414] sm:text-[12px] sm:tracking-[0.18em] md:text-[13px] md:tracking-[0.22em]"
         >
-          Hald&nbsp;Atelier
+          Bannermatic
         </button>
         <nav className="flex items-baseline gap-4 sm:gap-6 md:gap-10">
           {links.map((link) => (

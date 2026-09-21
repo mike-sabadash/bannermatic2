@@ -13,11 +13,11 @@ export default function ProjectPage() {
   const next = projects[(index + 1) % projects.length]
 
   const facts = [
-    { label: 'Type', value: project.type },
-    { label: 'Location', value: project.location },
-    { label: 'Year', value: project.year },
-    { label: 'Area', value: project.area },
-    { label: 'Status', value: project.status },
+    { label: 'Client', value: project.client },
+    { label: 'Campaign', value: project.type },
+    { label: 'Master', value: project.master },
+    { label: 'Channels', value: project.channels },
+    { label: 'Delivery', value: project.delivery },
   ]
 
   return (
@@ -31,7 +31,7 @@ export default function ProjectPage() {
               <span>
                 {String(index + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
               </span>
-              <span>{project.type}</span>
+              <span>{project.client}</span>
             </div>
           </Reveal>
           <Reveal delay={120}>
@@ -57,8 +57,8 @@ export default function ProjectPage() {
               />
             </div>
             <figcaption className="mt-5 flex items-baseline justify-between text-[12px] uppercase tracking-[0.22em] text-[#6f6c64]">
-              <span>{project.location}</span>
-              <span>{project.year}</span>
+              <span>{project.type}</span>
+              <span>{project.channels}</span>
             </figcaption>
           </figure>
         </Reveal>
@@ -95,6 +95,22 @@ export default function ProjectPage() {
           </div>
         </div>
 
+        <Reveal>
+          <figure className="pb-28 md:pb-44">
+            <div className="overflow-hidden bg-[#0b0d0e]">
+              <img
+                src={project.storyboard}
+                alt={project.storyboardAlt}
+                className="block aspect-square w-full object-cover"
+              />
+            </div>
+            <figcaption className="mt-5 flex items-baseline justify-between gap-6 text-[12px] uppercase tracking-[0.22em] text-[#6f6c64]">
+              <span>Motion storyboard &amp; master logic</span>
+              <span className="text-right">{project.master}</span>
+            </figcaption>
+          </figure>
+        </Reveal>
+
         {/* Next project */}
         <Reveal>
           <Link
@@ -102,7 +118,7 @@ export default function ProjectPage() {
             className="group block border-t border-[#141414]/10 py-16 md:py-24"
           >
             <p className="mb-6 text-[12px] uppercase tracking-[0.3em] text-[#6f6c64]">
-              Next project
+              Next campaign
             </p>
             <span className="block text-[9vw] font-light leading-[1.05] tracking-[-0.03em] text-[#141414] transition-transform duration-500 ease-out group-hover:translate-x-4 md:text-[5vw]">
               {next.name}
@@ -115,9 +131,9 @@ export default function ProjectPage() {
 
         <div className="flex items-baseline justify-between border-t border-[#141414]/10 pb-12 pt-6 text-[12px] uppercase tracking-[0.22em] text-[#6f6c64]">
           <Link to="/" className="link-sweep">
-            ← All work
+            ← All campaigns
           </Link>
-          <span>© 2026 Hald Atelier</span>
+          <span>© 2026 Bannermatic</span>
         </div>
       </main>
     </div>
