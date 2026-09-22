@@ -10,7 +10,7 @@ export default function MotionBanner({ source, poster, label }: MotionBannerProp
   const [isReady, setIsReady] = useState(false)
 
   return (
-    <div className="relative mx-auto aspect-[240/400] w-full max-w-[240px] overflow-hidden bg-[#0b0d0e]">
+    <div className="relative mx-auto aspect-[240/400] w-[240px] max-w-full overflow-hidden bg-[#0b0d0e]">
       <video
         className="absolute inset-0 h-full w-full object-contain"
         src={source}
