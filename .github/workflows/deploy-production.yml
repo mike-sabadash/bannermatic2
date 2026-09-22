@@ -56,6 +56,50 @@ jobs:
           rsync -az --delete -e "ssh -i ~/.ssh/bannermatic_server -p 2222 -o IdentitiesOnly=yes" \
             dist/ root@213.182.208.29:/var/www/bannermatic/
 
+      - name: Install canonical portfolio host
+        run: |
+          cat >/tmp/bannermatic.online.conf <<'NGINX'
+          server {
+            listen 80;
+            listen [::]:80;
+            server_name bannermatic.online www.bannermatic.online;
+            return 301 https://bannermatic.online$request_uri;
+          }
+
+          server {
+            listen 443 ssl;
+            listen [::]:443 ssl;
+            server_name bannermatic.online;
+
+            ssl_certificate /etc/letsencrypt/live/studio.bannermatic.online/fullchain.pem;
+            ssl_certificate_key /etc/letsencrypt/live/studio.bannermatic.online/privkey.pem;
+            include /etc/letsencrypt/options-ssl-nginx.conf;
+            ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+            root /var/www/bannermatic;
+            index index.html;
+            location / {
+              try_files $uri $uri/ /index.html;
+            }
+          }
+
+          server {
+            listen 443 ssl;
+            listen [::]:443 ssl;
+            server_name www.bannermatic.online;
+
+            ssl_certificate /etc/letsencrypt/live/studio.bannermatic.online/fullchain.pem;
+            ssl_certificate_key /etc/letsencrypt/live/studio.bannermatic.online/privkey.pem;
+            include /etc/letsencrypt/options-ssl-nginx.conf;
+            ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+            return 301 https://bannermatic.online$request_uri;
+          }
+          NGINX
+          scp -i ~/.ssh/bannermatic_server -P 2222 -o IdentitiesOnly=yes /tmp/bannermatic.online.conf root@213.182.208.29:/etc/nginx/conf.d/bannermatic.online.conf
+          ssh -i ~/.ssh/bannermatic_server -p 2222 -o IdentitiesOnly=yes root@213.182.208.29 \
+            'rm -f /etc/nginx/sites-enabled/bannermatic-new-domains; nginx -t; systemctl reload nginx'
+
       - name: Verify production
         run: |
           ssh -i ~/.ssh/bannermatic_server -p 2222 -o IdentitiesOnly=yes root@213.182.208.29 'nginx -t'
