@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router'
 import Header from '../sections/Header'
 import Reveal from '../components/Reveal'
+import MotionBanner from '../components/MotionBanner'
 import { projects } from '../data/projects'
 import { usePreferences } from '../lib/preferences'
 
@@ -96,6 +97,21 @@ export default function ProjectPage() {
             ))}
           </div>
         </div>
+
+        {project.motionBanner && (
+          <Reveal>
+            <figure className="pb-28 md:pb-44">
+              <MotionBanner
+                source={project.motionBanner.source}
+                label={text(project.motionBanner.label)}
+              />
+              <figcaption className="mx-auto mt-5 flex max-w-[400px] items-baseline justify-between gap-6 text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
+                <span>{language === 'ru' ? 'Живой баннер · 300 × 600' : 'Live banner · 300 × 600'}</span>
+                <span className="text-right">{language === 'ru' ? 'Зацикленное воспроизведение' : 'Continuous loop'}</span>
+              </figcaption>
+            </figure>
+          </Reveal>
+        )}
 
         <Reveal>
           <figure className="pb-28 md:pb-44">
