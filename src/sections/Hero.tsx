@@ -3,8 +3,28 @@ import { usePreferences } from '../lib/preferences'
 
 export default function Hero() {
   const { language } = usePreferences()
+  const clientLogos = [
+    { src: '/brand/suzuki.webp', alt: 'Suzuki', width: 95 },
+    { src: '/brand/toyota.webp', alt: 'Toyota', width: 118 },
+    { src: '/brand/lada.webp', alt: 'Lada', width: 76 },
+    { src: '/brand/parimatch.webp', alt: 'Parimatch', width: 90, accent: true },
+    { src: '/brand/msi.webp', alt: 'MSI', width: 105 },
+    { src: '/brand/lime.webp', alt: 'Lime', width: 84 },
+  ]
   return (
     <section id="top" className="mx-auto max-w-[1600px] px-5 pt-32 sm:px-6 sm:pt-36 md:px-12 md:pt-48">
+      <div className="mb-20 grid grid-cols-3 items-center gap-x-8 gap-y-10 sm:mb-24 md:grid-cols-6 md:gap-x-10 lg:mb-28">
+        {clientLogos.map((logo) => (
+          <div key={logo.alt} className="flex min-h-12 items-center md:justify-start">
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              width={logo.width}
+              className={`block h-auto max-h-11 max-w-full object-contain object-left ${logo.accent ? 'opacity-75' : 'opacity-30'}`}
+            />
+          </div>
+        ))}
+      </div>
       {/* Statement */}
       <div className="mb-16 md:mb-28">
         <Reveal>

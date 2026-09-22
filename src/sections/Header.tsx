@@ -43,9 +43,10 @@ export default function Header() {
       <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-5 py-5 sm:px-6 sm:py-6 md:px-12 md:py-8">
         <button
           onClick={() => goTo('top')}
-          className="whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] text-foreground sm:text-[12px] sm:tracking-[0.18em] md:text-[13px] md:tracking-[0.22em]"
+          className="flex items-center gap-2.5 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] text-foreground sm:gap-3 sm:text-[12px] sm:tracking-[0.18em] md:text-[13px] md:tracking-[0.22em]"
         >
-          Bannermatic
+          <img src="/brand/bannermatic-mark.webp" alt="" aria-hidden="true" className="h-[22px] w-auto sm:h-6" />
+          <span>Bannermatic</span>
         </button>
         <div className="flex items-center gap-3 sm:gap-5 md:gap-8">
         <nav className="hidden items-baseline gap-4 sm:flex sm:gap-6 md:gap-10">

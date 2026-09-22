@@ -61,7 +61,7 @@ export default function ProjectPage() {
         {/* Image */}
         <Reveal delay={240}>
           <figure>
-            <div className="overflow-hidden">
+            <div className={`overflow-hidden ${project.slug === 'suzuki-service-campaign' ? 'mx-auto max-w-[1440px]' : ''}`}>
               {project.slug === 'suzuki-service-campaign' ? (
                 <ParallaxHero source={project.image} alt={text(project.imageAlt)} />
               ) : (
