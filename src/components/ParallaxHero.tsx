@@ -40,7 +40,7 @@ export default function ParallaxHero({ source, alt }: ParallaxHeroProps) {
         ref={imageRef}
         src={source}
         alt={alt}
-        className="block h-full w-full scale-[1.16] object-cover object-[50%_68%] will-change-transform"
+        className="block h-full w-full scale-[1.16] object-cover object-[50%_59%] will-change-transform"
       />
     </div>
   )
