@@ -15,6 +15,7 @@ export type Project = {
   storyboardAlt: LocalizedText
   motionBanner?: {
     source: string
+    poster: string
     label: LocalizedText
   }
   lead: LocalizedText
@@ -43,6 +44,7 @@ export const projects: Project[] = [
     },
     motionBanner: {
       source: '/projects/toyota-lc200-banner.mp4',
+      poster: '/projects/toyota-lc200-banner-poster.webp',
       label: {
         en: 'Looping Toyota Land Cruiser 200 vertical motion banner',
         ru: 'Зацикленный вертикальный моушн-баннер Toyota Land Cruiser 200',

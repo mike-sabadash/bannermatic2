@@ -38,9 +38,11 @@ jobs:
           npm ci
           npm run build
           base64 --decode public/projects/toyota-lc200-banner.mp4.b64 > dist/projects/toyota-lc200-banner.mp4
-          rm dist/projects/toyota-lc200-banner.mp4.b64
+          base64 --decode public/projects/toyota-lc200-banner-poster.webp.b64 > dist/projects/toyota-lc200-banner-poster.webp
+          rm dist/projects/toyota-lc200-banner.mp4.b64 dist/projects/toyota-lc200-banner-poster.webp.b64
           test -f dist/index.html
           test -s dist/projects/toyota-lc200-banner.mp4
+          test -s dist/projects/toyota-lc200-banner-poster.webp
 
       - name: Configure SSH
         run: |

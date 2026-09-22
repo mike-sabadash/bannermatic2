@@ -2,10 +2,11 @@ import { useState } from 'react'
 
 type MotionBannerProps = {
   source: string
+  poster: string
   label: string
 }
 
-export default function MotionBanner({ source, label }: MotionBannerProps) {
+export default function MotionBanner({ source, poster, label }: MotionBannerProps) {
   const [isReady, setIsReady] = useState(false)
 
   return (
@@ -13,17 +14,19 @@ export default function MotionBanner({ source, label }: MotionBannerProps) {
       <video
         className="absolute inset-0 h-full w-full object-contain"
         src={source}
+        poster={poster}
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
         aria-label={label}
-        onCanPlay={() => setIsReady(true)}
+        onLoadedData={() => setIsReady(true)}
+        onError={() => setIsReady(true)}
       />
       {!isReady && (
         <div
-          className="absolute inset-0 grid place-items-center bg-[#0b0d0e]"
+          className="absolute inset-0 grid place-items-center bg-[#0b0d0e]/70"
           role="status"
           aria-label="Загрузка баннера"
         >
