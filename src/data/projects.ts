@@ -39,7 +39,7 @@ export const projects: Project[] = [
     type: { en: 'Service Campaign', ru: 'Сервисная кампания' },
     channels: 'Display / Video / Social / DOOH',
     year: '—',
-    master: '300 × 600 / 4 sec',
+    master: '300 × 600 / 8 sec',
     delivery: { en: 'Multi-format campaign system', ru: 'Мультиформатная система кампании' },
     agency: {
       name: 'Adwise',
@@ -74,6 +74,14 @@ export const projects: Project[] = [
         alt: { en: 'Suzuki five-year warranty campaign frame', ru: 'Кадр кампании Suzuki о пятилетней гарантии' },
       },
     ],
+    motionBanner: {
+      source: '/projects/suzuki-service-banner.mp4',
+      poster: '/projects/suzuki-service-banner-poster.webp',
+      label: {
+        en: 'Looping Suzuki service campaign vertical motion banner',
+        ru: 'Зацикленный вертикальный моушн-баннер сервисной кампании Suzuki',
+      },
+    },
     lead: {
       en: 'A frozen service story built around reliability, motion and a single recognisable world.',
       ru: 'Сервисная история о надёжности, движении и едином узнаваемом визуальном мире.',
@@ -81,12 +89,12 @@ export const projects: Project[] = [
     body: {
       en: [
         'The campaign turns Suzuki reliability into a vivid frozen landscape. Meteor light, faceted mountains, ice and water create a distinctive environment where the SX4 and Vitara feel active, capable and immediately recognisable.',
-        'A 300 × 600 master set the four-second rhythm and hierarchy for the campaign. The system was then adapted across display, video, social and DOOH placements while protecting the cars, service message and Suzuki brand panel in every crop.',
+        'A 300 × 600 master set the eight-second rhythm and hierarchy for the campaign. The system was then adapted across display, video, social and DOOH placements while protecting the cars, service message and Suzuki brand panel in every crop.',
         'Production covered composition rules, motion direction, asset preparation and platform-ready delivery. The four key frames work as a connected sequence and as individual messages, keeping the campaign coherent across the full media plan.',
       ],
       ru: [
         'Кампания превращает надёжность Suzuki в яркий ледяной мир. Свет метеоров, гранёные горы, лёд и вода создают узнаваемую среду, в которой SX4 и Vitara выглядят динамично, уверенно и сразу считываются.',
-        'Мастер 300 × 600 задал четырёхсекундный ритм и визуальную иерархию кампании. Затем система была адаптирована под display, video, social и DOOH с сохранением автомобилей, сервисного сообщения и бренд-панели Suzuki в каждом кропе.',
+        'Мастер 300 × 600 задал восьмисекундный ритм и визуальную иерархию кампании. Затем система была адаптирована под display, video, social и DOOH с сохранением автомобилей, сервисного сообщения и бренд-панели Suzuki в каждом кропе.',
         'Мы проработали правила композиции, моушн-направление, подготовку ассетов и сборку материалов по требованиям площадок. Четыре ключевых кадра работают и как связная последовательность, и как самостоятельные сообщения, сохраняя цельность кампании во всём медиаплане.',
       ],
     },
