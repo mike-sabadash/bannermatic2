@@ -1,5 +1,5 @@
 name: Deploy Bannermatic Production
-# Production deployment for bannermatic.rechord.online
+# Production deployment for bannermatic.online
 # Trigger production after SSH secret configuration
 # deploy run 4
 
@@ -44,21 +44,21 @@ jobs:
           install -m 700 -d ~/.ssh
           printf '%s\n' "${{ secrets.BANNERMATIC_SERVER_SSH_KEY }}" > ~/.ssh/bannermatic_server
           chmod 600 ~/.ssh/bannermatic_server
-          ssh-keyscan -p 22 213.182.208.29 >> ~/.ssh/known_hosts
+          ssh-keyscan -p 2222 213.182.208.29 >> ~/.ssh/known_hosts
 
       - name: Backup current production
         run: |
-          ssh -i ~/.ssh/bannermatic_server -p 22 -o IdentitiesOnly=yes root@213.182.208.29 \
+          ssh -i ~/.ssh/bannermatic_server -p 2222 -o IdentitiesOnly=yes root@213.182.208.29 \
             'set -e; test -d /var/www/bannermatic; rm -rf /var/www/bannermatic-backup-ci; cp -a /var/www/bannermatic /var/www/bannermatic-backup-ci'
 
       - name: Deploy static build
         run: |
-          rsync -az --delete -e "ssh -i ~/.ssh/bannermatic_server -p 22 -o IdentitiesOnly=yes" \
+          rsync -az --delete -e "ssh -i ~/.ssh/bannermatic_server -p 2222 -o IdentitiesOnly=yes" \
             dist/ root@213.182.208.29:/var/www/bannermatic/
 
       - name: Verify production
         run: |
-          ssh -i ~/.ssh/bannermatic_server -p 22 -o IdentitiesOnly=yes root@213.182.208.29 'nginx -t'
-          curl -fsSI --max-time 30 https://bannermatic.rechord.online/
-          curl -fsS --max-time 30 https://bannermatic.rechord.online/ | grep -q '<div id="root"></div>'
+          ssh -i ~/.ssh/bannermatic_server -p 2222 -o IdentitiesOnly=yes root@213.182.208.29 'nginx -t'
+          curl -fsSI --max-time 30 https://bannermatic.online/
+          curl -fsS --max-time 30 https://bannermatic.online/ | grep -q '<div id="root"></div>'
           echo 'BANNERMATIC_PRODUCTION_OK'
