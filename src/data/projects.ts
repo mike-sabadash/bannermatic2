@@ -13,6 +13,15 @@ export type Project = {
   imageAlt: LocalizedText
   storyboard: string
   storyboardAlt: LocalizedText
+  storyboardFrames?: Array<{
+    image: string
+    alt: LocalizedText
+  }>
+  agency?: {
+    name: string
+    logo: string
+    logoAlt: string
+  }
   motionBanner?: {
     source: string
     poster: string
@@ -23,6 +32,65 @@ export type Project = {
 }
 
 export const projects: Project[] = [
+  {
+    slug: 'suzuki-service-campaign',
+    name: 'SUZUKI Service Campaign',
+    client: 'SUZUKI',
+    type: { en: 'Service Campaign', ru: 'Сервисная кампания' },
+    channels: 'Display / Video / Social / DOOH',
+    year: '—',
+    master: '300 × 600 / 4 sec',
+    delivery: { en: 'Multi-format campaign system', ru: 'Мультиформатная система кампании' },
+    agency: {
+      name: 'Adwise',
+      logo: '/projects/suzuki-adwise.webp',
+      logoAlt: 'Adwise',
+    },
+    image: '/projects/suzuki-service-cover.webp',
+    imageAlt: {
+      en: 'Blue Suzuki SX4 crossing an icy landscape beneath a meteor shower',
+      ru: 'Синий Suzuki SX4 пересекает ледяной пейзаж под метеоритным дождём',
+    },
+    storyboard: '/projects/suzuki-service-frame-01.webp',
+    storyboardAlt: {
+      en: 'Four vertical frames from the Suzuki service campaign',
+      ru: 'Четыре вертикальных кадра сервисной кампании Suzuki',
+    },
+    storyboardFrames: [
+      {
+        image: '/projects/suzuki-service-frame-01.webp',
+        alt: { en: 'Suzuki SX4 campaign frame', ru: 'Кадр кампании Suzuki SX4' },
+      },
+      {
+        image: '/projects/suzuki-service-frame-02.webp',
+        alt: { en: 'Suzuki SX4 driving across ice', ru: 'Suzuki SX4 движется по льду' },
+      },
+      {
+        image: '/projects/suzuki-service-frame-03.webp',
+        alt: { en: 'Suzuki Vitara campaign frame', ru: 'Кадр кампании Suzuki Vitara' },
+      },
+      {
+        image: '/projects/suzuki-service-frame-04.webp',
+        alt: { en: 'Suzuki five-year warranty campaign frame', ru: 'Кадр кампании Suzuki о пятилетней гарантии' },
+      },
+    ],
+    lead: {
+      en: 'A frozen service story built around reliability, motion and a single recognisable world.',
+      ru: 'Сервисная история о надёжности, движении и едином узнаваемом визуальном мире.',
+    },
+    body: {
+      en: [
+        'The campaign turns Suzuki reliability into a vivid frozen landscape. Meteor light, faceted mountains, ice and water create a distinctive environment where the SX4 and Vitara feel active, capable and immediately recognisable.',
+        'A 300 × 600 master set the four-second rhythm and hierarchy for the campaign. The system was then adapted across display, video, social and DOOH placements while protecting the cars, service message and Suzuki brand panel in every crop.',
+        'Production covered composition rules, motion direction, asset preparation and platform-ready delivery. The four key frames work as a connected sequence and as individual messages, keeping the campaign coherent across the full media plan.',
+      ],
+      ru: [
+        'Кампания превращает надёжность Suzuki в яркий ледяной мир. Свет метеоров, гранёные горы, лёд и вода создают узнаваемую среду, в которой SX4 и Vitara выглядят динамично, уверенно и сразу считываются.',
+        'Мастер 300 × 600 задал четырёхсекундный ритм и визуальную иерархию кампании. Затем система была адаптирована под display, video, social и DOOH с сохранением автомобилей, сервисного сообщения и бренд-панели Suzuki в каждом кропе.',
+        'Мы проработали правила композиции, моушн-направление, подготовку ассетов и сборку материалов по требованиям площадок. Четыре ключевых кадра работают и как связная последовательность, и как самостоятельные сообщения, сохраняя цельность кампании во всём медиаплане.',
+      ],
+    },
+  },
   {
     slug: 'toyota-land-cruiser-200',
     name: 'Toyota Land Cruiser 200',

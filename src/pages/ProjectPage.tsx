@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from 'react-router'
 import Header from '../sections/Header'
 import Reveal from '../components/Reveal'
 import MotionBanner from '../components/MotionBanner'
+import ParallaxHero from '../components/ParallaxHero'
 import { projects } from '../data/projects'
 import { usePreferences } from '../lib/preferences'
 
@@ -15,12 +16,20 @@ export default function ProjectPage() {
   const project = projects[index]
   const next = projects[(index + 1) % projects.length]
 
-  const facts = [
+  const facts: Array<{ label: string; value: string; logo?: string; logoAlt?: string }> = [
     { label: language === 'ru' ? 'Клиент' : 'Client', value: project.client },
     { label: language === 'ru' ? 'Кампания' : 'Campaign', value: text(project.type) },
     { label: language === 'ru' ? 'Мастер' : 'Master', value: project.master },
     { label: language === 'ru' ? 'Каналы' : 'Channels', value: project.channels },
     { label: language === 'ru' ? 'Сдача' : 'Delivery', value: text(project.delivery) },
+    ...(project.agency
+      ? [{
+          label: language === 'ru' ? 'Агентство' : 'Agency',
+          value: project.agency.name,
+          logo: project.agency.logo,
+          logoAlt: project.agency.logoAlt,
+        }]
+      : []),
   ]
 
   return (
@@ -53,11 +62,15 @@ export default function ProjectPage() {
         <Reveal delay={240}>
           <figure>
             <div className="overflow-hidden">
-              <img
-                src={project.image}
-                alt={text(project.imageAlt)}
-                className="hero-image block aspect-[2048/1042] w-full object-cover"
-              />
+              {project.slug === 'suzuki-service-campaign' ? (
+                <ParallaxHero source={project.image} alt={text(project.imageAlt)} />
+              ) : (
+                <img
+                  src={project.image}
+                  alt={text(project.imageAlt)}
+                  className="hero-image block aspect-[2048/1042] w-full object-cover"
+                />
+              )}
             </div>
             <figcaption className="mt-5 flex items-baseline justify-between text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
               <span>{text(project.type)}</span>
@@ -75,7 +88,12 @@ export default function ProjectPage() {
                   <dt className="mb-1 text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
                     {fact.label}
                   </dt>
-                  <dd className="text-[15px] font-light text-foreground">{fact.value}</dd>
+                  <dd className="flex items-center gap-5 text-[15px] font-light text-foreground">
+                    <span>{fact.value}</span>
+                    {fact.logo && (
+                      <img src={fact.logo} alt={fact.logoAlt ?? fact.value} className="h-7 w-auto object-contain" />
+                    )}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -122,17 +140,33 @@ export default function ProjectPage() {
 
         <Reveal>
           <figure className="pb-28 md:pb-44">
-            <div className="overflow-hidden bg-[#0b0d0e]">
-              <img
-                src={project.storyboard}
-                alt={text(project.storyboardAlt)}
-                className="block h-auto w-full object-contain"
-              />
-            </div>
-            <figcaption className="mt-5 flex items-baseline justify-between gap-6 text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
-              <span>{language === 'ru' ? 'Моушн-раскадровка и логика мастера' : 'Motion storyboard & master logic'}</span>
-              <span className="text-right">{project.master}</span>
-            </figcaption>
+            {project.storyboardFrames ? (
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4 xl:gap-8">
+                {project.storyboardFrames.map((frame) => (
+                  <div key={frame.image} className="overflow-hidden bg-[#0b0d0e]">
+                    <img
+                      src={frame.image}
+                      alt={text(frame.alt)}
+                      className="block h-auto w-full object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="overflow-hidden bg-[#0b0d0e]">
+                <img
+                  src={project.storyboard}
+                  alt={text(project.storyboardAlt)}
+                  className="block h-auto w-full object-contain"
+                />
+              </div>
+            )}
+            {!project.storyboardFrames && (
+              <figcaption className="mt-5 flex items-baseline justify-between gap-6 text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
+                <span>{language === 'ru' ? 'Моушн-раскадровка и логика мастера' : 'Motion storyboard & master logic'}</span>
+                <span className="text-right">{project.master}</span>
+              </figcaption>
+            )}
           </figure>
         </Reveal>
 
