@@ -141,7 +141,7 @@ export default function ProjectPage() {
         <Reveal>
           <figure className="pb-28 md:pb-44">
             {project.storyboardFrames ? (
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4 xl:gap-8">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-7 xl:gap-8">
                 {project.storyboardFrames.map((frame) => (
                   <div key={frame.image} className="overflow-hidden bg-[#0b0d0e]">
                     <img

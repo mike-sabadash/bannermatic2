@@ -18,7 +18,7 @@ export default function ParallaxHero({ source, alt }: ParallaxHeroProps) {
       const rect = image.parentElement?.getBoundingClientRect()
       if (!rect || rect.bottom < 0 || rect.top > window.innerHeight) return
       const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
-      image.style.transform = `translate3d(0, ${(progress - 0.5) * 7}%, 0) scale(1.09)`
+      image.style.transform = `translate3d(0, ${(progress - 0.5) * 14}%, 0) scale(1.16)`
     }
     const onScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(update)
@@ -40,7 +40,7 @@ export default function ParallaxHero({ source, alt }: ParallaxHeroProps) {
         ref={imageRef}
         src={source}
         alt={alt}
-        className="block h-full w-full scale-[1.09] object-cover object-[50%_68%] will-change-transform"
+        className="block h-full w-full scale-[1.16] object-cover object-[50%_68%] will-change-transform"
       />
     </div>
   )
