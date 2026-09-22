@@ -42,7 +42,7 @@ export const projects: Project[] = [
       ru: 'Шестикадровая раскадровка анимации digital-кампании Toyota Land Cruiser 200',
     },
     motionBanner: {
-      source: '/projects/toyota-lc200-banner.mp4.b64',
+      source: '/projects/toyota-lc200-banner.mp4',
       label: {
         en: 'Looping Toyota Land Cruiser 200 vertical motion banner',
         ru: 'Зацикленный вертикальный моушн-баннер Toyota Land Cruiser 200',
