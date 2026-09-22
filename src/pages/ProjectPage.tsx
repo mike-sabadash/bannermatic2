@@ -101,14 +101,20 @@ export default function ProjectPage() {
         {project.motionBanner && (
           <Reveal>
             <figure className="pb-28 md:pb-44">
-              <MotionBanner
-                source={project.motionBanner.source}
-                label={text(project.motionBanner.label)}
-              />
-              <figcaption className="mx-auto mt-5 flex max-w-[400px] items-baseline justify-between gap-6 text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
-                <span>{language === 'ru' ? 'Живой баннер · 300 × 600' : 'Live banner · 300 × 600'}</span>
-                <span className="text-right">{language === 'ru' ? 'Зацикленное воспроизведение' : 'Continuous loop'}</span>
-              </figcaption>
+              <div className="relative mx-auto w-fit md:mx-0 md:ml-[41.666667%]">
+                <div className="absolute right-full top-1/2 mr-16 hidden -translate-y-1/2 items-center gap-3 md:flex">
+                  <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[40px] font-thin leading-none tracking-[-0.05em] text-white/10">
+                    MASTER
+                  </span>
+                  <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[40px] font-thin leading-none tracking-[-0.05em] text-white/25">
+                    240 × 400
+                  </span>
+                </div>
+                <MotionBanner
+                  source={project.motionBanner.source}
+                  label={text(project.motionBanner.label)}
+                />
+              </div>
             </figure>
           </Reveal>
         )}
