@@ -102,7 +102,7 @@ export default function ProjectPage() {
           <Reveal>
             <figure className="pb-28 md:pb-44">
               <div className="relative mx-auto w-fit md:mx-0 md:ml-[41.666667%]">
-                <div className="absolute right-full top-1/2 mr-16 hidden -translate-y-1/2 items-center gap-3 md:flex">
+                <div className="absolute right-full top-0 mr-16 hidden items-start gap-3 md:flex">
                   <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[40px] font-thin leading-none tracking-[-0.05em] text-white/10">
                     MASTER
                   </span>
@@ -112,6 +112,7 @@ export default function ProjectPage() {
                 </div>
                 <MotionBanner
                   source={project.motionBanner.source}
+                  poster={project.motionBanner.poster}
                   label={text(project.motionBanner.label)}
                 />
               </div>
