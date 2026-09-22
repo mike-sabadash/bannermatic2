@@ -13,6 +13,10 @@ export type Project = {
   imageAlt: LocalizedText
   storyboard: string
   storyboardAlt: LocalizedText
+  motionBanner?: {
+    source: string
+    label: LocalizedText
+  }
   lead: LocalizedText
   body: { en: string[]; ru: string[] }
 }
@@ -36,6 +40,13 @@ export const projects: Project[] = [
     storyboardAlt: {
       en: 'Six-frame animation storyboard for the Toyota Land Cruiser 200 digital campaign',
       ru: 'Шестикадровая раскадровка анимации digital-кампании Toyota Land Cruiser 200',
+    },
+    motionBanner: {
+      source: '/projects/toyota-lc200-banner.mp4.b64',
+      label: {
+        en: 'Looping Toyota Land Cruiser 200 vertical motion banner',
+        ru: 'Зацикленный вертикальный моушн-баннер Toyota Land Cruiser 200',
+      },
     },
     lead: {
       en: 'A cinematic key visual turned into a disciplined, scalable display system.',
