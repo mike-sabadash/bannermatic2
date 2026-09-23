@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 type ParallaxHeroProps = {
   source: string
@@ -7,6 +7,7 @@ type ParallaxHeroProps = {
 
 export default function ParallaxHero({ source, alt }: ParallaxHeroProps) {
   const imageRef = useRef<HTMLImageElement>(null)
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     const image = imageRef.current
@@ -35,12 +36,18 @@ export default function ParallaxHero({ source, alt }: ParallaxHeroProps) {
   }, [])
 
   return (
-    <div className="aspect-[2048/1042] overflow-hidden">
+    <div className="image-loader relative aspect-[2048/1042] overflow-hidden">
+      {!loaded && <span className="image-loader__skeleton absolute inset-0" aria-hidden="true" />}
       <img
         ref={imageRef}
         src={source}
         alt={alt}
-        className="block h-full w-full scale-[1.16] object-cover object-[50%_59%] will-change-transform"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+        className={`block h-full w-full scale-[1.16] object-cover object-[50%_59%] transition-opacity duration-700 will-change-transform ${loaded ? 'opacity-100' : 'opacity-0'}`}
       />
     </div>
   )

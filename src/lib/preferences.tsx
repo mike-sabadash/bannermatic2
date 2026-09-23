@@ -24,7 +24,7 @@ function initialLanguage(): Language {
 function initialTheme(): Theme {
   const saved = localStorage.getItem('bannermatic-theme')
   if (saved === 'light' || saved === 'dark') return saved
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  return 'dark'
 }
 
 export function PreferencesProvider({ children }: { children: ReactNode }) {
