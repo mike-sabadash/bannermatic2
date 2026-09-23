@@ -75,7 +75,7 @@ export const projects: Project[] = [
       },
     ],
     motionBanner: {
-      source: '/projects/suzuki-vitara-winter-banner.mp4',
+      source: '/projects/suzuki-vitara-winter-banner-v2.mp4',
       poster: '/projects/suzuki-vitara-winter-banner-poster.jpg',
       label: {
         en: 'Looping Suzuki Vitara winter campaign vertical motion banner',
