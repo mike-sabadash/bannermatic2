@@ -108,6 +108,11 @@ export const projects: Project[] = [
     year: '2026',
     master: '300 × 600 / 4 sec',
     delivery: { en: 'Multi-format campaign system', ru: 'Мультиформатная система кампании' },
+    agency: {
+      name: 'Adwise',
+      logo: '/projects/suzuki-adwise.webp',
+      logoAlt: 'Adwise',
+    },
     image: '/projects/toyota-lc200-keyvisual.png',
     imageAlt: {
       en: 'Black Toyota Land Cruiser 200 climbing a rocky mountain ridge under dramatic clouds',
@@ -152,6 +157,11 @@ export const projects: Project[] = [
     year: '2026',
     master: '300 × 600 / 10 sec',
     delivery: { en: 'Responsive motion family', ru: 'Адаптивная линейка motion-форматов' },
+    agency: {
+      name: 'Adwise',
+      logo: '/projects/suzuki-adwise.webp',
+      logoAlt: 'Adwise',
+    },
     image: '/projects/toyota-prado-keyvisual.webp',
     imageAlt: {
       en: 'Black Toyota Land Cruiser Prado crossing timber in a sunlit forest',
@@ -188,6 +198,11 @@ export const projects: Project[] = [
     year: '2017',
     master: '300 × 600 / 4 frames',
     delivery: { en: 'Animated feature-led banner system', ru: 'Анимированная баннерная система о продукте' },
+    agency: {
+      name: 'Adwise',
+      logo: '/projects/suzuki-adwise.webp',
+      logoAlt: 'Adwise',
+    },
     image: '/projects/lada-vesta-sw-cross-keyvisual.png',
     imageAlt: {
       en: 'Orange LADA Vesta SW Cross driving along a coastal road beneath red hang gliders',
@@ -197,6 +212,14 @@ export const projects: Project[] = [
     storyboardAlt: {
       en: 'Four-frame animation storyboard for the LADA Vesta SW Cross digital campaign',
       ru: 'Четырёхкадровая раскадровка digital-кампании LADA Vesta SW Cross',
+    },
+    motionBanner: {
+      source: '/projects/lada-vesta-sw-cross-banner.mp4',
+      poster: '/projects/lada-vesta-sw-cross-banner-poster.webp',
+      label: {
+        en: 'Looping LADA Vesta SW Cross vertical motion banner',
+        ru: 'Зацикленный вертикальный моушн-баннер LADA Vesta SW Cross',
+      },
     },
     lead: {
       en: 'An invitation to move, structured into a clear product story for every placement.',
