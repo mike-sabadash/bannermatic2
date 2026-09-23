@@ -33,6 +33,73 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: 'suzuki-vitara-winter-plans',
+    name: 'Suzuki Vitara — Большие планы на зиму',
+    client: 'Suzuki',
+    type: { en: 'Winter Retail Campaign', ru: 'Зимняя retail-кампания' },
+    channels: 'Display / Video / Social / DOOH',
+    year: '—',
+    master: '240 × 400 / 22 sec',
+    delivery: { en: 'Multi-format retail campaign', ru: 'Мультиформатная retail-кампания' },
+    agency: {
+      name: 'Adwise',
+      logo: '/projects/suzuki-adwise.webp',
+      logoAlt: 'Adwise',
+    },
+    image: '/projects/suzuki-vitara-winter-keyvisual.jpg',
+    imageAlt: {
+      en: 'Orange Suzuki Vitara driving through a snowy alpine pass',
+      ru: 'Оранжевая Suzuki Vitara движется по заснеженному альпийскому перевалу',
+    },
+    storyboard: '/projects/suzuki-vitara-winter-frame-01.jpg',
+    storyboardAlt: {
+      en: 'Four vertical frames from the Suzuki Vitara winter campaign',
+      ru: 'Четыре вертикальных кадра зимней кампании Suzuki Vitara',
+    },
+    storyboardFrames: [
+      {
+        image: '/projects/suzuki-vitara-winter-frame-01.jpg',
+        alt: { en: 'Set a personal record campaign frame', ru: 'Кадр кампании «Установить личный рекорд»' },
+      },
+      {
+        image: '/projects/suzuki-vitara-winter-frame-02.jpg',
+        alt: { en: 'Conquer steep slopes campaign frame', ru: 'Кадр кампании «Покорить крутые склоны»' },
+      },
+      {
+        image: '/projects/suzuki-vitara-winter-frame-03.jpg',
+        alt: { en: 'Buy a Suzuki Vitara campaign frame', ru: 'Кадр кампании «Купить Suzuki Vitara»' },
+      },
+      {
+        image: '/projects/suzuki-vitara-winter-frame-04.jpg',
+        alt: { en: 'Suzuki Vitara winter retail offer frame', ru: 'Кадр зимнего предложения Suzuki Vitara' },
+      },
+    ],
+    motionBanner: {
+      source: '/projects/suzuki-vitara-winter-banner.mp4',
+      poster: '/projects/suzuki-vitara-winter-banner-poster.jpg',
+      label: {
+        en: 'Looping Suzuki Vitara winter campaign vertical motion banner',
+        ru: 'Зацикленный вертикальный моушн-баннер зимней кампании Suzuki Vitara',
+      },
+    },
+    lead: {
+      en: 'A winter checklist that turns personal ambition into a clear reason to choose Vitara.',
+      ru: 'Зимний чек-лист, который превращает личные амбиции в понятный повод выбрать Vitara.',
+    },
+    body: {
+      en: [
+        'The campaign is built around a familiar ritual: making big plans for winter. Set a personal record, conquer steep slopes, buy a Suzuki Vitara — every checked box moves the story from emotion to product and makes the car part of an active winter lifestyle.',
+        'The vertical master combines cinematic mountain imagery with a strict retail hierarchy. A handwritten red tick becomes the recurring motion device, while the sequence leads from aspiration and action to the vehicle, then closes on the offer: complimentary CASCO insurance and a set of winter tyres with the purchase of a Vitara.',
+        'Production covered a 240 × 400 motion master, frame-by-frame timing, asset preparation, legibility and safe zones for compact placements. The modular structure keeps the headline, product, offer conditions and Suzuki brand block clear when the campaign is adapted for display, video, social and DOOH.',
+      ],
+      ru: [
+        'Кампания построена вокруг знакомого ритуала — больших планов на зиму. Установить личный рекорд, покорить крутые склоны, купить Suzuki Vitara: каждая новая галочка переводит историю от эмоции к продукту и делает автомобиль частью активного зимнего образа жизни.',
+        'Вертикальный мастер соединяет кинематографичные горные сцены с чёткой retail-иерархией. Нарисованная красная галочка становится сквозным моушн-приёмом, а последовательность ведёт от мечты и действия к автомобилю и финальному предложению — КАСКО без затрат и комплект зимних шин при покупке Vitara.',
+        'Мы собрали моушн-мастер 240 × 400, выстроили покадровый тайминг, подготовили ассеты и безопасные зоны для компактных размещений. Модульная структура сохраняет читаемость заголовка, автомобиля, условий предложения и бренд-блока Suzuki при адаптации под display, video, social и DOOH.',
+      ],
+    },
+  },
+  {
     slug: 'suzuki-service-campaign',
     name: 'SUZUKI Service Campaign',
     client: 'SUZUKI',
