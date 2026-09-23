@@ -1,4 +1,5 @@
 import Reveal from '../components/Reveal'
+import LoadableImage from '../components/LoadableImage'
 import { usePreferences } from '../lib/preferences'
 
 export default function Hero() {
@@ -20,6 +21,9 @@ export default function Hero() {
               src={logo.src}
               alt={logo.alt}
               width={logo.width}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               className={`block h-auto max-h-9 max-w-full object-contain object-left ${logo.accent ? 'opacity-75' : 'opacity-30'}`}
             />
           </div>
@@ -44,13 +48,13 @@ export default function Hero() {
       {/* The single hero image */}
       <Reveal delay={200}>
         <figure>
-          <div className="overflow-hidden">
-            <img
-              src="/projects/toyota-lc200-keyvisual.webp"
-              alt={language === 'ru' ? 'Кей-вижуал кампании Toyota Land Cruiser 200 в горах' : 'Toyota Land Cruiser 200 campaign key visual in a mountain landscape'}
-              className="hero-image block aspect-[4/3] w-full object-cover sm:aspect-[2048/1042]"
-            />
-          </div>
+          <LoadableImage
+            src="/projects/toyota-lc200-keyvisual.webp"
+            alt={language === 'ru' ? 'Кей-вижуал кампании Toyota Land Cruiser 200 в горах' : 'Toyota Land Cruiser 200 campaign key visual in a mountain landscape'}
+            eager
+            containerClassName="aspect-[4/3] sm:aspect-[2048/1042]"
+            className="hero-image block h-full w-full object-cover"
+          />
           <figcaption className="mt-5 flex items-baseline justify-between text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
             <span>Toyota Land Cruiser 200 — {language === 'ru' ? 'Система кампании' : 'Campaign System'}</span>
             <span className="hidden sm:inline">{language === 'ru' ? 'Кей-вижуал / Моушн / Адаптация' : 'Key visual / Motion / Adaptation'}</span>

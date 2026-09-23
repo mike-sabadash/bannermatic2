@@ -101,6 +101,30 @@
   transform: translateY(0);
 }
 
+/* ---- Image loading state ---- */
+@keyframes image-loader-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+.image-loader {
+  background: hsl(var(--muted));
+}
+.image-loader__skeleton {
+  overflow: hidden;
+  background: hsl(var(--muted));
+}
+.image-loader__skeleton::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.07), transparent);
+  animation: image-loader-sweep 1.4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
@@ -109,6 +133,9 @@
   }
   html {
     scroll-behavior: auto;
+  }
+  .image-loader__skeleton::after {
+    animation: none;
   }
 }
 

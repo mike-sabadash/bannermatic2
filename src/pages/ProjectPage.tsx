@@ -3,6 +3,7 @@ import Header from '../sections/Header'
 import Reveal from '../components/Reveal'
 import MotionBanner from '../components/MotionBanner'
 import ParallaxHero from '../components/ParallaxHero'
+import LoadableImage from '../components/LoadableImage'
 import { projects } from '../data/projects'
 import { usePreferences } from '../lib/preferences'
 
@@ -65,10 +66,13 @@ export default function ProjectPage() {
               {project.slug === 'suzuki-service-campaign' ? (
                 <ParallaxHero source={project.image} alt={text(project.imageAlt)} />
               ) : (
-                <img
+                <LoadableImage
+                  key={project.image}
                   src={project.image}
                   alt={text(project.imageAlt)}
-                  className="hero-image block aspect-[2048/1042] w-full object-cover"
+                  eager
+                  containerClassName="aspect-[2048/1042]"
+                  className="hero-image block h-full w-full object-cover"
                 />
               )}
             </div>
