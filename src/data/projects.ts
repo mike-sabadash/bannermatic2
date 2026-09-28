@@ -220,48 +220,7 @@ export const projects: Project[] = [
       ],
     },
   },
-  {
-    slug: 'toyota-land-cruiser-prado',
-    name: 'Toyota Land Cruiser Prado',
-    client: 'Toyota',
-    type: { en: 'Adventure Campaign', ru: 'Имиджевая adventure-кампания' },
-    channels: 'Display / Video / Social / DOOH',
-    year: '2026',
-    master: '300 × 600 / 10 sec',
-    delivery: { en: 'Responsive motion family', ru: 'Адаптивная линейка motion-форматов' },
-    agency: {
-      name: 'Adwise',
-      logo: '/projects/suzuki-adwise.webp',
-      logoAlt: 'Adwise',
-    },
-    image: '/projects/toyota-prado-keyvisual.webp',
-    imageAlt: {
-      en: 'Black Toyota Land Cruiser Prado crossing timber in a sunlit forest',
-      ru: 'Чёрный Toyota Land Cruiser Prado преодолевает препятствие в залитом солнцем лесу',
-    },
-    storyboard: '/projects/toyota-prado-storyboard.webp',
-    storyboardAlt: {
-      en: 'Six-frame animation storyboard and format map for the Toyota Land Cruiser Prado campaign',
-      ru: 'Раскадровка анимации и карта форматов кампании Toyota Land Cruiser Prado',
-    },
-    lead: {
-      en: 'One forest narrative, rebuilt for every screen without losing its atmosphere.',
-      ru: 'Одна история в лесу, пересобранная под каждый экран без потери атмосферы.',
-    },
-    body: {
-      en: [
-        'For Prado, the campaign starts quietly. Light wakes the forest, the terrain appears, and the vehicle enters as part of the landscape rather than as a cut-out product shot. The motion builds confidence through detail: ground, wheel, grille, message and finally the brand.',
-        'A ten-second 300 × 600 master became the reference for a full placement family. The media plan combined vertical display, landscape inventory, mobile units, square social assets, video and DOOH. Instead of treating each size as a separate artwork, we defined responsive rules for subject position, depth, copy scale and the Toyota brand panel.',
-        'That system let the campaign move quickly from creative approval to production. Formats share the same story and visual rhythm, while each one is composed for its own viewing distance, crop and technical limits. The campaign feels authored — not batch-resized.',
-      ],
-      ru: [
-        'Кампания Prado начинается тихо. Свет пробуждает лес, проявляется рельеф, и автомобиль входит в кадр как часть пейзажа, а не как вырезанный продуктовый шот. Движение постепенно набирает уверенность через детали: земля, колесо, решётка, сообщение и, наконец, бренд.',
-        'Десятисекундный мастер 300 × 600 стал эталоном для всей линейки размещений. Медиаплан объединял вертикальный display, горизонтальный инвентарь, mobile, квадратные social-форматы, video и DOOH. Вместо отдельного макета для каждого размера мы задали адаптивные правила для позиции автомобиля, глубины сцены, масштаба текста и бренд-панели Toyota.',
-        'Система позволила быстро перейти от утверждённого креатива к раскатке. Все форматы держат одну историю и визуальный ритм, но каждый собран под свою дистанцию просмотра, кроп и технические ограничения. Поэтому кампания выглядит спроектированной, а не пакетно отресайзенной.',
-      ],
-    },
-  },
-  {
+{
     slug: 'lada-vesta-sw-cross',
     name: 'LADA Vesta SW Cross',
     client: 'LADA',
@@ -307,6 +266,47 @@ export const projects: Project[] = [
         '«Скажи жизни да!» задаёт эмоциональный вектор кампании: открытая прибрежная дорога, дельтапланы, воздух и Vesta SW Cross, движущаяся к новым горизонтам. Один большой lifestyle-вижуал мы превратили в простую и хорошо читаемую digital-историю.',
         'Вертикальный мастер проходит путь от key visual к причинам выбрать автомобиль: универсальный багажник с органайзером, мультимедиа с навигацией и камерой заднего вида, затем подогрев передних и задних сидений. Каждый аргумент получил свой кадр, а оранжевый автомобиль, энергия дороги и LADA-подпись связывают систему воедино.',
         'Мы собирали не одиночный баннер, а production-систему: ясный стартовый кадр, продуктовые сцены в середине, узнаваемый финал и компоновки, которые сохраняют копирайт, автомобиль и бренд на компактных display-размещениях. Так одна идея кампании остаётся читаемой при адаптации под разные площадки.',
+      ],
+    },
+  },
+  {
+    slug: 'toyota-land-cruiser-prado',
+    name: 'Toyota Land Cruiser Prado',
+    client: 'Toyota',
+    type: { en: 'Adventure Campaign', ru: 'Имиджевая adventure-кампания' },
+    channels: 'Display / Video / Social / DOOH',
+    year: '2026',
+    master: '300 × 600 / 10 sec',
+    delivery: { en: 'Responsive motion family', ru: 'Адаптивная линейка motion-форматов' },
+    agency: {
+      name: 'Adwise',
+      logo: '/projects/suzuki-adwise.webp',
+      logoAlt: 'Adwise',
+    },
+    image: '/projects/toyota-prado-keyvisual.webp',
+    imageAlt: {
+      en: 'Black Toyota Land Cruiser Prado crossing timber in a sunlit forest',
+      ru: 'Чёрный Toyota Land Cruiser Prado преодолевает препятствие в залитом солнцем лесу',
+    },
+    storyboard: '/projects/toyota-prado-storyboard.webp',
+    storyboardAlt: {
+      en: 'Six-frame animation storyboard and format map for the Toyota Land Cruiser Prado campaign',
+      ru: 'Раскадровка анимации и карта форматов кампании Toyota Land Cruiser Prado',
+    },
+    lead: {
+      en: 'One forest narrative, rebuilt for every screen without losing its atmosphere.',
+      ru: 'Одна история в лесу, пересобранная под каждый экран без потери атмосферы.',
+    },
+    body: {
+      en: [
+        'For Prado, the campaign starts quietly. Light wakes the forest, the terrain appears, and the vehicle enters as part of the landscape rather than as a cut-out product shot. The motion builds confidence through detail: ground, wheel, grille, message and finally the brand.',
+        'A ten-second 300 × 600 master became the reference for a full placement family. The media plan combined vertical display, landscape inventory, mobile units, square social assets, video and DOOH. Instead of treating each size as a separate artwork, we defined responsive rules for subject position, depth, copy scale and the Toyota brand panel.',
+        'That system let the campaign move quickly from creative approval to production. Formats share the same story and visual rhythm, while each one is composed for its own viewing distance, crop and technical limits. The campaign feels authored — not batch-resized.',
+      ],
+      ru: [
+        'Кампания Prado начинается тихо. Свет пробуждает лес, проявляется рельеф, и автомобиль входит в кадр как часть пейзажа, а не как вырезанный продуктовый шот. Движение постепенно набирает уверенность через детали: земля, колесо, решётка, сообщение и, наконец, бренд.',
+        'Десятисекундный мастер 300 × 600 стал эталоном для всей линейки размещений. Медиаплан объединял вертикальный display, горизонтальный инвентарь, mobile, квадратные social-форматы, video и DOOH. Вместо отдельного макета для каждого размера мы задали адаптивные правила для позиции автомобиля, глубины сцены, масштаба текста и бренд-панели Toyota.',
+        'Система позволила быстро перейти от утверждённого креатива к раскатке. Все форматы держат одну историю и визуальный ритм, но каждый собран под свою дистанцию просмотра, кроп и технические ограничения. Поэтому кампания выглядит спроектированной, а не пакетно отресайзенной.',
       ],
     },
   },
