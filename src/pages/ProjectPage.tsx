@@ -71,7 +71,7 @@ export default function ProjectPage() {
                   src={project.image}
                   alt={text(project.imageAlt)}
                   eager
-                  containerClassName="aspect-[2048/1042]"
+                  containerClassName={project.slug === 'vip-club-tongits' ? 'aspect-[2048/1290]' : 'aspect-[2048/1042]'}
                   className="hero-image block h-full w-full object-cover"
                 />
               )}
