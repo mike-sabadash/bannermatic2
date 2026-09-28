@@ -14,11 +14,23 @@ Do not touch page components unless the requested case genuinely cannot be repre
 
 ## 2. Asset transport
 
+### Mandatory environment preflight
+
+Before processing or replacing a user-supplied binary asset, verify:
+- the original attachment is available as a local file;
+- this repository is available as a local writable checkout/workspace capable of normal binary `git add/commit/push`.
+
+If either condition is false, do not start the case asset mutation in that environment.
+
+A GitHub text/content fetch failing to decode an MP4/MOV/JPG/PNG as UTF-8 only means the wrong read operation was used. It must never trigger a Google Drive/Library/base64 transport workaround.
+
+The required path for case binaries is:
+
+`conversation attachment -> local repository workspace -> git commit/push -> PR`
+
+Google Drive, Library and other intermediary cloud stores are not an allowed portfolio asset transport path.
+
 Use user attachments directly from their local conversation path when available.
-
-Do not upload assets to Google Drive, Library, or another intermediary as a routine step.
-
-STOP CHECK: if the planned upload path includes Google Drive or another intermediary, first verify that a direct local-file-to-repository path is unavailable. Only then may an intermediary be used as a technical fallback.
 
 ## 3. Image and video optimization
 
