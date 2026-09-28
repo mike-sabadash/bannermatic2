@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router'
 import Header from '../sections/Header'
 import Reveal from '../components/Reveal'
 import MotionBanner from '../components/MotionBanner'
 import ParallaxHero from '../components/ParallaxHero'
 import LoadableImage from '../components/LoadableImage'
+import { ArcRevealHero } from '../components/ui/arc-preloader-hero'
 import { projects } from '../data/projects'
 import { usePreferences } from '../lib/preferences'
 
@@ -11,6 +13,9 @@ export default function ProjectPage() {
   const { language, text } = usePreferences()
   const { slug } = useParams()
   const index = projects.findIndex((p) => p.slug === slug)
+  const [heroReady, setHeroReady] = useState(false)
+  const [motionReady, setMotionReady] = useState(false)
+  const [htmlReady, setHtmlReady] = useState(false)
 
   if (index === -1) return <Navigate to="/" replace />
 
@@ -34,6 +39,13 @@ export default function ProjectPage() {
   ]
 
   return (
+    <ArcRevealHero
+      ready={heroReady && (!project.motionBanner || motionReady) && (!project.htmlBanner || htmlReady)}
+      greetings={language === 'ru'
+        ? [{ text: 'Идея.' }, { text: 'Образ.' }, { text: 'Движение.' }]
+        : [{ text: 'Idea.' }, { text: 'Image.' }, { text: 'Motion.' }]}
+      waitingText={language === 'ru' ? 'Загружаем кампанию' : 'Loading campaign'}
+    >
     <div className="min-h-screen bg-background transition-colors duration-500">
       <Header />
       <main className="mx-auto max-w-[1600px] px-5 pt-28 sm:px-6 sm:pt-32 md:px-12 md:pt-44">
@@ -64,13 +76,14 @@ export default function ProjectPage() {
           <figure>
             <div className={`overflow-hidden ${project.slug === 'suzuki-service-campaign' ? 'mx-auto max-w-[1440px]' : ''}`}>
               {project.slug === 'suzuki-service-campaign' ? (
-                <ParallaxHero source={project.image} alt={text(project.imageAlt)} />
+                <ParallaxHero source={project.image} alt={text(project.imageAlt)} onReady={() => setHeroReady(true)} />
               ) : (
                 <LoadableImage
                   key={project.image}
                   src={project.image}
                   alt={text(project.imageAlt)}
                   eager
+                  onReady={() => setHeroReady(true)}
                   containerClassName={project.slug === 'vip-club-tongits' ? 'aspect-[2048/1290]' : 'aspect-[2048/1042]'}
                   className="hero-image block h-full w-full object-cover"
                 />
@@ -140,6 +153,7 @@ export default function ProjectPage() {
                   className="block border-0 bg-transparent"
                   loading="eager"
                   sandbox="allow-scripts allow-same-origin"
+                  onLoad={() => setHtmlReady(true)}
                 />
               </div>
             </figure>
@@ -162,6 +176,7 @@ export default function ProjectPage() {
                   source={project.motionBanner.source}
                   poster={project.motionBanner.poster}
                   label={text(project.motionBanner.label)}
+                  onReady={() => setMotionReady(true)}
                 />
               </div>
             </figure>
@@ -226,5 +241,6 @@ export default function ProjectPage() {
         </div>
       </main>
     </div>
+    </ArcRevealHero>
   )
 }
