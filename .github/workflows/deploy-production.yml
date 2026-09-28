@@ -36,6 +36,7 @@ jobs:
       - name: Build
         run: |
           npm ci
+          npm run check:cases
           npm run build
           base64 --decode public/projects/toyota-lc200-banner.mp4.b64 > dist/projects/toyota-lc200-banner.mp4
           base64 --decode public/projects/toyota-lc200-banner-poster.webp.b64 > dist/projects/toyota-lc200-banner-poster.webp
