@@ -309,16 +309,16 @@ export const projects: Project[] = [
         'Мы собирали не одиночный баннер, а production-систему: ясный стартовый кадр, продуктовые сцены в середине, узнаваемый финал и компоновки, которые сохраняют копирайт, автомобиль и бренд на компактных display-размещениях. Так одна идея кампании остаётся читаемой при адаптации под разные площадки.',
       ],
     },
-  },,
+  },
   {
     slug: 'vip-club-tongits',
     name: 'VIP Club Tongits — Welcome Pack',
     client: 'VIP Club Tongits',
     type: { en: 'Online Casino Welcome Campaign', ru: 'Welcome-кампания онлайн-казино' },
-    channels: 'HTML5 Display / Mobile / Performance',
+    channels: 'Display / Video / Mobile / Performance',
     year: '2026',
-    master: '240 × 400 / HTML5',
-    delivery: { en: 'Animated HTML5 banner campaign', ru: 'Анимированная HTML5-баннерная кампания' },
+    master: '240 × 400 / Motion',
+    delivery: { en: 'Vertical motion banner campaign', ru: 'Вертикальная моушн-баннерная кампания' },
     image: '/projects/casino/cover.jpg',
     imageAlt: { en: 'VIP Club Tongits welcome campaign key visual', ru: 'Кей-вижуал welcome-кампании VIP Club Tongits' },
     storyboard: '/projects/casino/frame-01.jpg',
@@ -338,8 +338,8 @@ export const projects: Project[] = [
       },
     },
     lead: {
-      en: 'A premium welcome sequence that turns the first player reward into a compact, high-energy HTML5 story.',
-      ru: 'Премиальная welcome-последовательность, которая превращает первый бонус игрока в компактную динамичную HTML5-историю.',
+      en: 'A premium welcome sequence that turns the first player reward into a compact, high-energy motion story.',
+      ru: 'Премиальная welcome-последовательность, которая превращает первый бонус игрока в компактную динамичную motion-историю.',
     },
     body: {
       en: [
