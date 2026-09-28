@@ -36,47 +36,7 @@ export type Project = {
 }
 
 export const projects: Project[] = [
-  {
-    slug: 'vip-club-tongits',
-    name: 'VIP Club Tongits — Welcome Pack',
-    client: 'VIP Club Tongits',
-    type: { en: 'Online Casino Welcome Campaign', ru: 'Welcome-кампания онлайн-казино' },
-    channels: 'HTML5 Display / Mobile / Performance',
-    year: '2026',
-    master: '240 × 400 / HTML5',
-    delivery: { en: 'Animated HTML5 banner campaign', ru: 'Анимированная HTML5-баннерная кампания' },
-    image: '/projects/casino/case-1.webp?casino=vip-club-tongits',
-    imageAlt: { en: 'VIP Club Tongits welcome campaign key visual', ru: 'Кей-вижуал welcome-кампании VIP Club Tongits' },
-    storyboard: '/projects/casino/case-1.webp?casino=vip-club-tongits',
-    storyboardAlt: { en: 'VIP Club Tongits campaign frames', ru: 'Кадры кампании VIP Club Tongits' },
-    storyboardFrames: [
-      { image: '/projects/casino/case-1.webp?casino=vip-club-tongits', alt: { en: 'Welcome pack opening frame', ru: 'Стартовый кадр Welcome Pack' } },
-      { image: '/projects/casino/case-1.webp?casino=vip-club-tongits', alt: { en: 'Gold coins reward frame', ru: 'Кадр с наградой Gold Coins' } },
-      { image: '/projects/casino/case-1.webp?casino=vip-club-tongits', alt: { en: 'Vouchers reward frame', ru: 'Кадр с наградой Vouchers' } },
-      { image: '/projects/casino/case-1.webp?casino=vip-club-tongits', alt: { en: 'VIP Club Tongits final packshot', ru: 'Финальный packshot VIP Club Tongits' } },
-    ],
-    htmlBanner: {
-      source: '/projects/casino/banner/index.html',
-      label: { en: 'Interactive HTML5 master banner', ru: 'Интерактивный HTML5 мастер-баннер' },
-    },
-    lead: {
-      en: 'A premium welcome sequence that turns the first player reward into a compact, high-energy HTML5 story.',
-      ru: 'Премиальная welcome-последовательность, которая превращает первый бонус игрока в компактную динамичную HTML5-историю.',
-    },
-    body: {
-      en: [
-        'The campaign is built around a simple reward reveal: enter the VIP Club, open the welcome pack and discover the value inside. A friendly host character guides the sequence while gold, velvet and warm stage light establish a premium game-club atmosphere without losing the clarity required by performance media.',
-        'The 240 × 400 master moves through three clear beats — welcome, 280,000 Gold Coins, and +50 Vouchers — before resolving into the VIP Club Tongits packshot and a direct “Get the Pack” call to action. Each scene keeps one dominant message, so the offer remains readable even at compact mobile display sizes.',
-        'Production was designed as HTML5 rather than rendered video. Backgrounds, copy layers and packshot assets remain separate inside the banner, allowing controlled timing, lightweight transitions and a crisp CTA. The same scene logic can be rebuilt for additional placements while preserving hierarchy, character scale and the gold-bronze campaign language.',
-      ],
-      ru: [
-        'Кампания построена вокруг простого раскрытия награды: войти в VIP Club, открыть welcome pack и увидеть, что внутри. Персонаж-хост ведёт пользователя через последовательность, а золото, бархат и тёплый сценический свет создают премиальную атмосферу игрового клуба, не мешая performance-коммуникации.',
-        'Мастер 240 × 400 проходит три ясных смысловых шага — welcome, 280 000 Gold Coins и +50 Vouchers — и приходит к финальному packshot VIP Club Tongits с прямым CTA «Get the Pack». В каждом кадре остаётся одно доминирующее сообщение, поэтому оффер читается даже в компактном mobile display.',
-        'Продакшн изначально собран как HTML5, а не как отрендеренное видео. Фоны, текстовые слои и packshot-ассеты остаются раздельными внутри баннера, что даёт контролируемый тайминг, лёгкие переходы и чёткий CTA. Та же логика сцен масштабируется на дополнительные размещения с сохранением иерархии, масштаба персонажа и золото-бронзового визуального языка.',
-      ],
-    },
-  },
-  
+
   {
     slug: 'suzuki-vitara-winter-plans',
     name: 'Suzuki Vitara — Большие планы на зиму',
@@ -350,4 +310,49 @@ export const projects: Project[] = [
       ],
     },
   },
+  {
+    slug: 'vip-club-tongits',
+    name: 'VIP Club Tongits — Welcome Pack',
+    client: 'VIP Club Tongits',
+    type: { en: 'Online Casino Welcome Campaign', ru: 'Welcome-кампания онлайн-казино' },
+    channels: 'Display / Video / Mobile / Performance',
+    year: '2026',
+    master: '240 × 400 / Motion',
+    delivery: { en: 'Vertical motion banner campaign', ru: 'Вертикальная моушн-баннерная кампания' },
+    image: '/projects/casino/cover.jpg',
+    imageAlt: { en: 'VIP Club Tongits welcome campaign key visual', ru: 'Кей-вижуал welcome-кампании VIP Club Tongits' },
+    storyboard: '/projects/casino/frame-01.jpg',
+    storyboardAlt: { en: 'VIP Club Tongits campaign frames', ru: 'Кадры кампании VIP Club Tongits' },
+    storyboardFrames: [
+      { image: '/projects/casino/frame-01.jpg', alt: { en: 'Welcome pack opening frame', ru: 'Стартовый кадр Welcome Pack' } },
+      { image: '/projects/casino/frame-02.jpg', alt: { en: 'Gold coins reward frame', ru: 'Кадр с наградой Gold Coins' } },
+      { image: '/projects/casino/frame-03.jpg', alt: { en: 'Vouchers reward frame', ru: 'Кадр с наградой Vouchers' } },
+      { image: '/projects/casino/frame-04.jpg', alt: { en: 'VIP Club Tongits final packshot', ru: 'Финальный packshot VIP Club Tongits' } },
+    ],
+    motionBanner: {
+      source: '/projects/casino/vip-club-tongits-240x400.mp4',
+      poster: '/projects/casino/frame-01.jpg',
+      label: {
+        en: 'Looping VIP Club Tongits welcome campaign vertical motion banner',
+        ru: 'Зацикленный вертикальный моушн-баннер welcome-кампании VIP Club Tongits',
+      },
+    },
+    lead: {
+      en: 'A premium welcome sequence that turns the first player reward into a compact, high-energy motion story.',
+      ru: 'Премиальная welcome-последовательность, которая превращает первый бонус игрока в компактную динамичную motion-историю.',
+    },
+    body: {
+      en: [
+        'The campaign is built around a simple reward reveal: enter the VIP Club, open the welcome pack and discover the value inside. A friendly host character guides the sequence while gold, velvet and warm stage light establish a premium game-club atmosphere without losing the clarity required by performance media.',
+        'The 240 × 400 master moves through three clear beats — welcome, 280,000 Gold Coins, and +50 Vouchers — before resolving into the VIP Club Tongits packshot and a direct “Get the Pack” call to action. Each scene keeps one dominant message, so the offer remains readable even at compact mobile display sizes.',
+        'Production is built as a vertical 240 × 400 motion master: four scenes reveal the Welcome Pack, Gold Coins reward, +50 Vouchers and the final packshot with CTA. The same scene logic can be adapted to additional placements while preserving hierarchy, character scale and the gold-bronze campaign language.',
+      ],
+      ru: [
+        'Кампания построена вокруг простого раскрытия награды: войти в VIP Club, открыть welcome pack и увидеть, что внутри. Персонаж-хост ведёт пользователя через последовательность, а золото, бархат и тёплый сценический свет создают премиальную атмосферу игрового клуба, не мешая performance-коммуникации.',
+        'Мастер 240 × 400 проходит три ясных смысловых шага — welcome, 280 000 Gold Coins и +50 Vouchers — и приходит к финальному packshot VIP Club Tongits с прямым CTA «Get the Pack». В каждом кадре остаётся одно доминирующее сообщение, поэтому оффер читается даже в компактном mobile display.',
+        'Продакшн собран как вертикальный motion-master 240 × 400: четыре сцены последовательно раскрывают Welcome Pack, награду с Gold Coins, +50 Vouchers и финальный packshot с CTA. Та же логика сцен масштабируется на дополнительные размещения с сохранением иерархии, масштаба персонажа и золото-бронзового визуального языка.',
+      ],
+    },
+  },
+
 ]
