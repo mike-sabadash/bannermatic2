@@ -19,8 +19,11 @@ const publicRef = /['"]((?:\/projects\/)[^'"]+)['"]/g
 for (const match of source.matchAll(publicRef)) {
   const rel = match[1].replace(/^\//, '')
   const file = path.join(root, 'public', rel)
-  if (!fs.existsSync(file)) errors.push(`Missing referenced asset: ${match[1]}`)
-  else if (!fs.statSync(file).size) errors.push(`Empty referenced asset: ${match[1]}`)
+  if (!fs.existsSync(file)) {
+    const encoded = file + '.b64'
+    if (!fs.existsSync(encoded)) errors.push(`Missing referenced asset: ${match[1]}`)
+    else if (!fs.statSync(encoded).size) errors.push(`Empty encoded source asset: ${match[1]}.b64`)
+  } else if (!fs.statSync(file).size) errors.push(`Empty referenced asset: ${match[1]}`)
 }
 
 function pngSize(buf) {
