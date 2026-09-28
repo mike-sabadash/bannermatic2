@@ -22,7 +22,11 @@ export type Project = {
     logo: string
     logoAlt: string
   }
-  htmlBanner?: {\n    source: string\n    label: LocalizedText\n  }\n  motionBanner?: {
+  htmlBanner?: {
+    source: string
+    label: LocalizedText
+  }
+  motionBanner?: {
     source: string
     poster: string
     label: LocalizedText
@@ -31,7 +35,8 @@ export type Project = {
   body: { en: string[]; ru: string[] }
 }
 
-export const projects: Project[] = [\n  {
+export const projects: Project[] = [
+  {
     slug: 'vip-club-tongits',
     name: 'VIP Club Tongits — Welcome Pack',
     client: 'VIP Club Tongits',
