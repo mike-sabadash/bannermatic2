@@ -13,3 +13,6 @@ Before merge, run `npm run check:cases`. Do not merge or deploy when it fails.
 Do not change unrelated cases, components, layout, or architecture.
 
 A production task is complete only after the production workflow finishes with `completed / success`.
+
+
+For video assets, the Video asset gate in `docs/CASE_WORKFLOW.md` is mandatory: use the original source, measure source/output technical properties, visually validate quality, and never report unmeasured technical values.
