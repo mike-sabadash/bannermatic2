@@ -49,3 +49,29 @@ Then inspect the git/PR diff and confirm there are no unrelated files.
 ## 6. Delivery
 
 Merge to `main`, wait for `Deploy Bannermatic Production`, and report completion only after the workflow is `completed / success`.
+
+
+### Video asset gate — mandatory
+
+Do not automatically re-encode a user-supplied video merely because it is being prepared for the web.
+
+Always work from the original user-supplied source. Never use an already re-encoded derivative as the source for another lossy encode when the original is available.
+
+Before any video replacement or encode, measure and record the actual source:
+- file size;
+- pixel dimensions;
+- duration;
+- codec;
+- bitrate when available.
+
+After encoding, measure the same properties on the output and visually inspect representative frames / motion quality against the source.
+
+An encode is a FAIL and must not be committed when:
+- visible quality is materially worse without a justified delivery constraint;
+- file size has not decreased enough to justify the quality loss;
+- required pixel dimensions changed;
+- the output was produced from an avoidable lossy derivative rather than the original source.
+
+Do not claim a file size, bitrate, dimensions, duration, codec, or optimization result unless it was actually measured by a tool. Never invent an exact technical value after a binary-inspection tool fails.
+
+For aggressive web-size targets, create the candidate from the original, validate quality and technical properties, and only then replace the production asset.
