@@ -120,6 +120,32 @@ export default function ProjectPage() {
           </div>
         </div>
 
+        {project.htmlBanner && (
+          <Reveal>
+            <figure className="pb-28 md:pb-44">
+              <div className="relative mx-auto w-fit md:mx-0 md:ml-[41.666667%]">
+                <div className="absolute right-full top-0 mr-16 hidden items-start gap-3 md:flex">
+                  <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[40px] font-thin leading-none tracking-[-0.05em] text-white/10">
+                    MASTER
+                  </span>
+                  <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[40px] font-thin leading-none tracking-[-0.05em] text-white/25">
+                    240 × 400
+                  </span>
+                </div>
+                <iframe
+                  src={project.htmlBanner.source}
+                  title={text(project.htmlBanner.label)}
+                  width="240"
+                  height="400"
+                  className="block border-0 bg-transparent"
+                  loading="eager"
+                  sandbox="allow-scripts allow-same-origin"
+                />
+              </div>
+            </figure>
+          </Reveal>
+        )}
+
         {project.motionBanner && (
           <Reveal>
             <figure className="pb-28 md:pb-44">

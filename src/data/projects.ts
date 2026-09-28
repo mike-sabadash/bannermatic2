@@ -22,7 +22,7 @@ export type Project = {
     logo: string
     logoAlt: string
   }
-  motionBanner?: {
+  htmlBanner?: {\n    source: string\n    label: LocalizedText\n  }\n  motionBanner?: {
     source: string
     poster: string
     label: LocalizedText
@@ -31,7 +31,47 @@ export type Project = {
   body: { en: string[]; ru: string[] }
 }
 
-export const projects: Project[] = [
+export const projects: Project[] = [\n  {
+    slug: 'vip-club-tongits',
+    name: 'VIP Club Tongits — Welcome Pack',
+    client: 'VIP Club Tongits',
+    type: { en: 'Online Casino Welcome Campaign', ru: 'Welcome-кампания онлайн-казино' },
+    channels: 'HTML5 Display / Mobile / Performance',
+    year: '2026',
+    master: '240 × 400 / HTML5',
+    delivery: { en: 'Animated HTML5 banner campaign', ru: 'Анимированная HTML5-баннерная кампания' },
+    image: '/projects/casino/case-1.webp',
+    imageAlt: { en: 'VIP Club Tongits welcome campaign key visual', ru: 'Кей-вижуал welcome-кампании VIP Club Tongits' },
+    storyboard: '/projects/casino/case-1.webp',
+    storyboardAlt: { en: 'VIP Club Tongits campaign frames', ru: 'Кадры кампании VIP Club Tongits' },
+    storyboardFrames: [
+      { image: '/projects/casino/case-1.webp', alt: { en: 'Welcome pack opening frame', ru: 'Стартовый кадр Welcome Pack' } },
+      { image: '/projects/casino/case-1.webp', alt: { en: 'Gold coins reward frame', ru: 'Кадр с наградой Gold Coins' } },
+      { image: '/projects/casino/case-1.webp', alt: { en: 'Vouchers reward frame', ru: 'Кадр с наградой Vouchers' } },
+      { image: '/projects/casino/case-1.webp', alt: { en: 'VIP Club Tongits final packshot', ru: 'Финальный packshot VIP Club Tongits' } },
+    ],
+    htmlBanner: {
+      source: '/projects/casino/banner/index.html',
+      label: { en: 'Interactive HTML5 master banner', ru: 'Интерактивный HTML5 мастер-баннер' },
+    },
+    lead: {
+      en: 'A premium welcome sequence that turns the first player reward into a compact, high-energy HTML5 story.',
+      ru: 'Премиальная welcome-последовательность, которая превращает первый бонус игрока в компактную динамичную HTML5-историю.',
+    },
+    body: {
+      en: [
+        'The campaign is built around a simple reward reveal: enter the VIP Club, open the welcome pack and discover the value inside. A friendly host character guides the sequence while gold, velvet and warm stage light establish a premium game-club atmosphere without losing the clarity required by performance media.',
+        'The 240 × 400 master moves through three clear beats — welcome, 280,000 Gold Coins, and +50 Vouchers — before resolving into the VIP Club Tongits packshot and a direct “Get the Pack” call to action. Each scene keeps one dominant message, so the offer remains readable even at compact mobile display sizes.',
+        'Production was designed as HTML5 rather than rendered video. Backgrounds, copy layers and packshot assets remain separate inside the banner, allowing controlled timing, lightweight transitions and a crisp CTA. The same scene logic can be rebuilt for additional placements while preserving hierarchy, character scale and the gold-bronze campaign language.',
+      ],
+      ru: [
+        'Кампания построена вокруг простого раскрытия награды: войти в VIP Club, открыть welcome pack и увидеть, что внутри. Персонаж-хост ведёт пользователя через последовательность, а золото, бархат и тёплый сценический свет создают премиальную атмосферу игрового клуба, не мешая performance-коммуникации.',
+        'Мастер 240 × 400 проходит три ясных смысловых шага — welcome, 280 000 Gold Coins и +50 Vouchers — и приходит к финальному packshot VIP Club Tongits с прямым CTA «Get the Pack». В каждом кадре остаётся одно доминирующее сообщение, поэтому оффер читается даже в компактном mobile display.',
+        'Продакшн изначально собран как HTML5, а не как отрендеренное видео. Фоны, текстовые слои и packshot-ассеты остаются раздельными внутри баннера, что даёт контролируемый тайминг, лёгкие переходы и чёткий CTA. Та же логика сцен масштабируется на дополнительные размещения с сохранением иерархии, масштаба персонажа и золото-бронзового визуального языка.',
+      ],
+    },
+  },
+  
   {
     slug: 'suzuki-vitara-winter-plans',
     name: 'Suzuki Vitara — Большие планы на зиму',
