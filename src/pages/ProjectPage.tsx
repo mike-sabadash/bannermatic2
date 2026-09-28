@@ -48,11 +48,11 @@ export default function ProjectPage() {
     >
     <div className="min-h-screen bg-background transition-colors duration-500">
       <Header />
-      <main className="mx-auto max-w-[1600px] px-5 pt-28 sm:px-6 sm:pt-32 md:px-12 md:pt-44">
+      <main className="mx-auto max-w-[1600px] px-5 pt-28 sm:px-6 sm:pt-32 md:px-12 md:pt-36">
         {/* Title block */}
-        <div className="mb-14 md:mb-24">
+        <div className="mb-14 md:mb-12">
           <Reveal>
-            <div className="mb-8 flex items-baseline justify-between text-[12px] uppercase tracking-[0.3em] text-muted-foreground md:mb-12">
+            <div className="mb-8 flex items-baseline justify-between text-[12px] uppercase tracking-[0.3em] text-muted-foreground md:mb-8">
               <span>
                 {String(index + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
               </span>
@@ -65,14 +65,14 @@ export default function ProjectPage() {
             </h1>
           </Reveal>
           <Reveal delay={200}>
-            <p className="mt-8 max-w-[34ch] text-xl font-light leading-[1.4] tracking-[-0.01em] text-muted-foreground md:mt-12 md:text-2xl">
+            <p className="mt-8 max-w-[34ch] text-xl font-light leading-[1.4] tracking-[-0.01em] text-muted-foreground md:mt-8 md:text-2xl">
               {text(project.lead)}
             </p>
           </Reveal>
         </div>
 
         {/* Image */}
-        <Reveal delay={240}>
+        <Reveal immediate>
           <figure>
             <div className={`overflow-hidden ${project.slug === 'suzuki-service-campaign' ? 'mx-auto max-w-[1440px]' : ''}`}>
               {project.slug === 'suzuki-service-campaign' ? (
