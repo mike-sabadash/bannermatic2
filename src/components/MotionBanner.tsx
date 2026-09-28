@@ -1,13 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { usePreferences } from '../lib/preferences'
 
 type MotionBannerProps = {
   source: string
   poster: string
   label: string
+  onReady?: () => void
 }
 
-export default function MotionBanner({ source, poster, label }: MotionBannerProps) {
+export default function MotionBanner({ source, poster, label, onReady }: MotionBannerProps) {
+  const { language } = usePreferences()
   const [isReady, setIsReady] = useState(false)
+  const [hasError, setHasError] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const ensurePlayback = useCallback(() => {
@@ -40,14 +44,15 @@ export default function MotionBanner({ source, poster, label }: MotionBannerProp
         preload="auto"
         aria-label={label}
         onLoadedData={() => {
-          setIsReady(true)
           ensurePlayback()
         }}
+        onPlaying={() => { setIsReady(true); setHasError(false); onReady?.() }}
         onCanPlay={ensurePlayback}
+        onWaiting={() => setIsReady(false)}
         onPause={ensurePlayback}
         onEnded={ensurePlayback}
-        onStalled={ensurePlayback}
-        onError={() => setIsReady(true)}
+        onStalled={() => { setIsReady(false); ensurePlayback() }}
+        onError={() => { setIsReady(true); setHasError(true); onReady?.() }}
       />
       {!isReady && (
         <div
@@ -56,6 +61,13 @@ export default function MotionBanner({ source, poster, label }: MotionBannerProp
           aria-label="Загрузка баннера"
         >
           <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/25 border-t-white" />
+        </div>
+      )}
+      {hasError && (
+        <div className="absolute inset-0 grid place-items-center bg-[#0b0d0e]/85 p-5 text-center text-sm text-white">
+          <button type="button" onClick={() => { setHasError(false); setIsReady(false); videoRef.current?.load(); ensurePlayback() }} className="border-b border-white/70 pb-1">
+            {language === 'ru' ? 'Повторить загрузку видео' : 'Retry video'}
+          </button>
         </div>
       )}
     </div>

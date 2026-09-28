@@ -12,12 +12,13 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  const { pathname } = useLocation()
   return (
     <>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/work/:slug" element={<ProjectPage />} />
+        <Route path="/work/:slug" element={<ProjectPage key={pathname} />} />
       </Routes>
     </>
   )

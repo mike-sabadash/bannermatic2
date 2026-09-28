@@ -6,6 +6,7 @@ type LoadableImageProps = {
   className: string
   containerClassName?: string
   eager?: boolean
+  onReady?: () => void
 }
 
 export default function LoadableImage({
@@ -14,6 +15,7 @@ export default function LoadableImage({
   className,
   containerClassName = '',
   eager = false,
+  onReady,
 }: LoadableImageProps) {
   const [loaded, setLoaded] = useState(false)
 
@@ -26,8 +28,8 @@ export default function LoadableImage({
         loading={eager ? 'eager' : 'lazy'}
         fetchPriority={eager ? 'high' : 'auto'}
         decoding="async"
-        onLoad={() => setLoaded(true)}
-        onError={() => setLoaded(true)}
+        onLoad={() => { setLoaded(true); onReady?.() }}
+        onError={() => { setLoaded(true); onReady?.() }}
         className={`${className} transition-opacity duration-700 ${loaded ? 'opacity-100' : 'opacity-0'}`}
       />
     </div>

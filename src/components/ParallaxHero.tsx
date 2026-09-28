@@ -3,9 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 type ParallaxHeroProps = {
   source: string
   alt: string
+  onReady?: () => void
 }
 
-export default function ParallaxHero({ source, alt }: ParallaxHeroProps) {
+export default function ParallaxHero({ source, alt, onReady }: ParallaxHeroProps) {
   const imageRef = useRef<HTMLImageElement>(null)
   const [loaded, setLoaded] = useState(false)
 
@@ -45,8 +46,8 @@ export default function ParallaxHero({ source, alt }: ParallaxHeroProps) {
         loading="eager"
         fetchPriority="high"
         decoding="async"
-        onLoad={() => setLoaded(true)}
-        onError={() => setLoaded(true)}
+        onLoad={() => { setLoaded(true); onReady?.() }}
+        onError={() => { setLoaded(true); onReady?.() }}
         className={`block h-full w-full scale-[1.16] object-cover object-[50%_59%] transition-opacity duration-700 will-change-transform ${loaded ? 'opacity-100' : 'opacity-0'}`}
       />
     </div>
