@@ -93,7 +93,7 @@ export function ArcRevealHero({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.35 }}
-                    className="text-4xl font-light tracking-[-0.04em] sm:text-6xl"
+                    className="text-2xl font-light tracking-[-0.04em] sm:text-3xl"
                   >{current.text}</motion.span>
                 )}
               </AnimatePresence>
