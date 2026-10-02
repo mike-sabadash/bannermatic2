@@ -53,6 +53,11 @@ export default function ProjectPage() {
             { text: 'Плейсмент.' },
             { text: 'Кампания.' },
             { text: 'Продакшн.' },
+            { text: 'Кейвижуал.' },
+            { text: 'Раскадровка.' },
+            { text: 'Анимация.' },
+            { text: 'Медиаплан.' },
+            { text: 'Экспорт.' },
           ]
         : [
             { text: 'Idea.' },
@@ -65,6 +70,11 @@ export default function ProjectPage() {
             { text: 'Placement.' },
             { text: 'Campaign.' },
             { text: 'Production.' },
+            { text: 'Key visual.' },
+            { text: 'Storyboard.' },
+            { text: 'Animation.' },
+            { text: 'Media plan.' },
+            { text: 'Export.' },
           ]}
       waitingText={language === 'ru' ? 'Загружаем кампанию' : 'Loading campaign'}
     >
