@@ -42,8 +42,30 @@ export default function ProjectPage() {
     <ArcRevealHero
       ready={heroReady && (!project.motionBanner || motionReady) && (!project.htmlBanner || htmlReady)}
       greetings={language === 'ru'
-        ? [{ text: 'Идея.' }, { text: 'Образ.' }, { text: 'Движение.' }]
-        : [{ text: 'Idea.' }, { text: 'Image.' }, { text: 'Motion.' }]}
+        ? [
+            { text: 'Идея.' },
+            { text: 'Мастер.' },
+            { text: 'Композиция.' },
+            { text: 'Движение.' },
+            { text: 'Формат.' },
+            { text: 'Адаптация.' },
+            { text: 'Ресайз.' },
+            { text: 'Плейсмент.' },
+            { text: 'Кампания.' },
+            { text: 'Продакшн.' },
+          ]
+        : [
+            { text: 'Idea.' },
+            { text: 'Master.' },
+            { text: 'Composition.' },
+            { text: 'Motion.' },
+            { text: 'Format.' },
+            { text: 'Adaptation.' },
+            { text: 'Resize.' },
+            { text: 'Placement.' },
+            { text: 'Campaign.' },
+            { text: 'Production.' },
+          ]}
       waitingText={language === 'ru' ? 'Загружаем кампанию' : 'Loading campaign'}
     >
     <div className="min-h-screen bg-background transition-colors duration-500">
