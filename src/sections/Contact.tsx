@@ -17,7 +17,7 @@ export default function Contact() {
       </Reveal>
 
       <Reveal delay={180}>
-        <div className="mt-20 grid gap-10 text-[13px] leading-[1.9] text-muted-foreground sm:grid-cols-3 md:mt-32">
+        <div className="mt-20 grid gap-10 text-[13px] leading-[1.9] text-muted-foreground sm:grid-cols-2 lg:grid-cols-4 md:mt-32">
           <div>
             <p className="mb-3 text-[12px] uppercase tracking-[0.22em] text-foreground">{language === 'ru' ? 'Хороший старт' : 'Good starting point'}</p>
             <p>
@@ -35,6 +35,11 @@ export default function Contact() {
             <p>
               {language === 'ru' ? <>Бренды<br />Креативные агентства<br />Медиа- и production-команды</> : <>Brands<br />Creative agencies<br />Media and production teams</>}
             </p>
+          </div>
+          <div>
+            <p className="mb-3 text-[12px] uppercase tracking-[0.22em] text-foreground">{language === 'ru' ? 'Контакты' : 'Contact'}</p>
+            <a className="block w-fit break-all text-foreground transition-opacity hover:opacity-60" href="mailto:lostvoxmusic@gmail.com">lostvoxmusic@gmail.com</a>
+            <a className="block w-fit text-foreground transition-opacity hover:opacity-60" href="https://t.me/nobodycaresmusic" target="_blank" rel="noopener noreferrer">Telegram · @nobodycaresmusic</a>
           </div>
         </div>
       </Reveal>
