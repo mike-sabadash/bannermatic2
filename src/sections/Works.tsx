@@ -11,6 +11,7 @@ export default function Works() {
   const ref = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState<number | null>(null)
   const [finePointer, setFinePointer] = useState(false)
+  const [readyPreviews, setReadyPreviews] = useState<Set<string>>(() => new Set())
   const reducedMotion = useReducedMotion()
 
   const x = useMotionValue(0)
@@ -32,6 +33,20 @@ export default function Works() {
     return () => query.removeEventListener('change', update)
   }, [])
 
+  useEffect(() => {
+    if (!finePointer || reducedMotion) return
+    let mounted = true
+    const images = projects.map((project) => {
+      const image = new Image()
+      image.src = `/projects/previews/${project.slug}.webp`
+      image.decode().then(() => {
+        if (mounted) setReadyPreviews((current) => new Set(current).add(project.slug))
+      }).catch(() => { /* Keep the preview hidden if the request fails. */ })
+      return image
+    })
+    return () => { mounted = false; images.forEach((image) => { image.onload = null }) }
+  }, [finePointer, reducedMotion])
+
   const onMove = (event: MouseEvent) => {
     if (!finePointer) return
     const rect = ref.current?.getBoundingClientRect()
@@ -42,7 +57,7 @@ export default function Works() {
     cursorY.set(event.clientY)
   }
 
-  const showPreview = finePointer && !reducedMotion && active !== null
+  const showPreview = finePointer && !reducedMotion && active !== null && readyPreviews.has(projects[active].slug)
   return (
     <section id="work" className="mx-auto max-w-[1600px] scroll-mt-24 px-5 py-28 sm:px-6 sm:py-32 md:px-12 md:py-56">
       <Reveal className="mb-14 flex items-baseline justify-between md:mb-20">
@@ -87,7 +102,7 @@ export default function Works() {
                 {projects.map((project, i) => (
                   <motion.img
                     key={project.slug}
-                    src={project.image}
+                    src={`/projects/previews/${project.slug}.webp`}
                     alt=""
                     className="absolute inset-0 h-full w-full object-cover"
                     initial={false}
