@@ -11,9 +11,24 @@ export default function Contact() {
         </p>
       </Reveal>
       <Reveal delay={100}>
-        <p className="max-w-[16ch] text-[10vw] font-light leading-[1.02] tracking-[-0.035em] text-foreground md:text-[6vw]">
-          {language === 'ru' ? 'Приносите идею. Мы запустим её везде.' : 'Bring the idea. We’ll make it run everywhere.'}
-        </p>
+        <div className="grid items-end gap-12 lg:grid-cols-[minmax(0,1.6fr)_minmax(300px,0.55fr)] lg:gap-16">
+          <p className="max-w-[16ch] text-[10vw] font-light leading-[1.02] tracking-[-0.035em] text-foreground md:text-[6vw]">
+            {language === 'ru' ? 'Приносите идею. Мы запустим её везде.' : 'Bring the idea. We’ll make it run everywhere.'}
+          </p>
+          <div className="max-w-md border-t border-border pt-6 lg:pb-2">
+            <p className="mb-7 max-w-[30ch] text-lg font-light leading-snug text-foreground md:text-xl">
+              {language === 'ru' ? 'Расскажите о задаче — обсудим форматы, сроки и запуск.' : 'Tell us about your project — let’s discuss formats, timing and launch.'}
+            </p>
+            <div className="flex flex-col gap-3">
+              <a href="mailto:lostvoxmusic@gmail.com" className="inline-flex min-h-14 items-center justify-between gap-4 rounded-full bg-foreground px-6 py-3 text-sm text-background transition-opacity hover:opacity-75">
+                <span>{language === 'ru' ? 'Написать на почту' : 'Send an email'}</span><span aria-hidden="true">↗</span>
+              </a>
+              <a href="https://t.me/nobodycaresmusic" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-between gap-4 rounded-full border border-border px-6 py-3 text-sm text-foreground transition-colors hover:border-foreground">
+                <span>{language === 'ru' ? 'Написать в Telegram' : 'Message on Telegram'}</span><span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </Reveal>
 
       <Reveal delay={180}>
