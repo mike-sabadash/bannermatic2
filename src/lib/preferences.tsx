@@ -18,7 +18,7 @@ const PreferencesContext = createContext<Preferences | null>(null)
 function initialLanguage(): Language {
   const saved = localStorage.getItem('bannermatic-language')
   if (saved === 'en' || saved === 'ru') return saved
-  return navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en'
+  return 'ru'
 }
 
 function initialTheme(): Theme {
