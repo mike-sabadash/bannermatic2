@@ -148,7 +148,7 @@ const reduce=matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches;
 
 // сетка и колонки
 const grid=document.getElementById(&#x27;grid&#x27;), cols=document.getElementById(&#x27;cols&#x27;);
-&#x27;ABCDEFGHIJKL&#x27;.split(&#x27;&#x27;).forEach((c,i)=&gt;{const x=72+i*108; const l=document.createElement(&#x27;i&#x27;); l.style.left=x+&#x27;px&#x27;; grid.appendChild(l); const s=document.createElement(&#x27;span&#x27;); s.textContent=c; s.style.left=(x+6)+&#x27;px&#x27;; cols.appendChild(s);});
+&#x27;ABCDEFGHIJKL&#x27;.split(&#x27;&#x27;).forEach((c,i)=&gt;{const x=72+i*108; const l=document.createElement(&#x27;i&#x27;); l.style.left=x+&#x27;px&#x27;; grid.appendChild(l); if(c===&#x27;L&#x27;) return; const s=document.createElement(&#x27;span&#x27;); s.textContent=c; s.style.left=(x+6)+&#x27;px&#x27;; cols.appendChild(s);});
 [112,196,279,363,446,530,613,697,780].forEach(y=&gt;{const b=document.createElement(&#x27;b&#x27;); b.style.top=y+&#x27;px&#x27;; grid.appendChild(b);});
 
 // зубья: прямоугольные, по всему кругу
