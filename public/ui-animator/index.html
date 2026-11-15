@@ -84,8 +84,8 @@ h1{font-size:46px;font-weight:400;letter-spacing:-.04em;line-height:1.08}
 .company-slide .arr.next path{stroke:#fff}
 /* иллюстрация */
 .ill{left:877px;top:255px;width:465px;height:392px}
-.ill img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;opacity:1;filter:contrast(1.25)}
-.ill .company-art{inset:auto;left:-93px;top:-84px;width:650px;height:556px;filter:none}
+.ill img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1}
+.ill .company-art{inset:auto;left:-93px;top:-84px;width:650px;height:556px}
 /* стрелки */
 .arrows{left:1251px;top:623px;display:flex;gap:12px}
 .arr{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(18,20,23,.15);background:transparent;position:relative;isolation:isolate;overflow:hidden;transition:transform .28s cubic-bezier(.2,.8,.2,1),border-color .28s}
@@ -198,15 +198,45 @@ const title=document.getElementById(&#x27;title&#x27;), s1=document.getElementBy
 const E=&#x27;cubic-bezier(.22,1,.36,1)&#x27;;
 function swapLine(el,text,delay){ if(reduce){el.textContent=text;return;}
  el.animate([{transform:&#x27;translateY(0)&#x27;,opacity:1},{transform:&#x27;translateY(-40%)&#x27;,opacity:0}],{duration:220,easing:&#x27;ease-in&#x27;,fill:&#x27;forwards&#x27;}).onfinish=()=&gt;{el.textContent=text; el.animate([{transform:&#x27;translateY(105%)&#x27;,opacity:0},{transform:&#x27;translateY(0)&#x27;,opacity:1}],{duration:560,delay:delay,easing:E,fill:&#x27;forwards&#x27;});};}
+// Use real alpha for the line art inside the scaled iframe, including on iOS Safari.
+const illustrationCache=new Map();
+async function transparentIllustration(src,contrast){
+ const source=new Image();
+ source.src=src;
+ await source.decode();
+ const canvas=document.createElement(&#x27;canvas&#x27;);
+ canvas.width=source.naturalWidth; canvas.height=source.naturalHeight;
+ const context=canvas.getContext(&#x27;2d&#x27;);
+ context.drawImage(source,0,0);
+ const pixels=context.getImageData(0,0,canvas.width,canvas.height);
+ const rgba=pixels.data;
+ const levels=Array.from({length:256},(_,value)=&gt;Math.max(0,Math.min(255,(value-127.5)*contrast+127.5)));
+ for(let p=0;p&lt;rgba.length;p+=4){
+  const light=0.2126*levels[rgba[p]]+0.7152*levels[rgba[p+1]]+0.0722*levels[rgba[p+2]];
+  rgba[p]=rgba[p+1]=rgba[p+2]=0;
+  rgba[p+3]*=1-light/255;
+ }
+ context.putImageData(pixels,0,0);
+ return canvas.toDataURL(&#x27;image/png&#x27;);
+}
+function illustration(key,contrast){
+ const cacheKey=key+&#x27;:&#x27;+contrast;
+ if(!illustrationCache.has(cacheKey)){
+  illustrationCache.set(cacheKey,transparentIllustration(IMG[key],contrast));
+ }
+ return illustrationCache.get(cacheKey);
+}
 function setContent(i,first){const s=SLIDES[i];
  const company=s.img===&quot;company&quot;; stage.classList.toggle(&#x27;company-slide&#x27;,company);
- const im=new Image(); im.src=IMG[s.img]; im.alt=&#x27;&#x27;;
+ const ink=company?1:(first||reduce||s.img===&#x27;conv&#x27;||s.img===&#x27;plastic&#x27;)?1.25:1.7;
+ const im=new Image(); im.alt=&#x27;&#x27;;
+ illustration(s.img,ink).then(src=&gt;{im.src=src;});
  if(company) im.className=&#x27;company-art&#x27;;
  if(first){title.textContent=s.title; s1.textContent=s.s1; s2.textContent=s.s2; ill.replaceChildren(im); return;}
  swapLine(title,s.title,0); swapLine(s1,s.s1,80); swapLine(s2,s.s2,140);
- const old=ill.querySelector(&#x27;img&#x27;); const ink=company?1:(s.img===&quot;conv&quot;||s.img===&quot;plastic&quot;)?1.25:1.7; ill.appendChild(im);
+ const old=ill.querySelector(&#x27;img&#x27;); ill.appendChild(im);
  if(reduce){old&amp;&amp;old.remove();return;}
- im.animate([{opacity:0,transform:&#x27;scale(.97)&#x27;,filter:&#x27;contrast(&#x27;+ink+&#x27;) blur(0)&#x27;},{opacity:1,transform:&#x27;scale(1)&#x27;,filter:&#x27;contrast(&#x27;+ink+&#x27;) blur(0)&#x27;}],{duration:700,delay:200,easing:E,fill:&#x27;both&#x27;});
+ im.animate([{opacity:0,transform:&#x27;scale(.97)&#x27;},{opacity:1,transform:&#x27;scale(1)&#x27;}],{duration:700,delay:200,easing:E,fill:&#x27;both&#x27;});
  if(old){old.animate([{opacity:1},{opacity:0,transform:&#x27;scale(.98)&#x27;}],{duration:260,fill:&#x27;forwards&#x27;}).onfinish=()=&gt;old.remove();}}
 
 let busy=false;
