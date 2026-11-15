@@ -188,9 +188,9 @@ function swapLine(el,text,delay){ if(reduce){el.textContent=text;return;}
 function setContent(i,first){const s=SLIDES[i];
  if(first){title.textContent=s.title; s1.textContent=s.s1; s2.textContent=s.s2; ill.innerHTML=&#x27;&lt;img src=&quot;&#x27;+IMG[s.img]+&#x27;&quot; alt=&quot;&quot;&gt;&#x27;; return;}
  swapLine(title,s.title,0); swapLine(s1,s.s1,80); swapLine(s2,s.s2,140);
- const old=ill.querySelector(&#x27;img&#x27;); const im=new Image(); im.src=IMG[s.img]; im.alt=&#x27;&#x27;; ill.appendChild(im);
+ const old=ill.querySelector(&#x27;img&#x27;); const im=new Image(); const ink=i===3?2.3:1.7; im.src=IMG[s.img]; im.alt=&#x27;&#x27;; ill.appendChild(im);
  if(reduce){old&amp;&amp;old.remove();return;}
- im.animate([{opacity:0,transform:&#x27;scale(.97)&#x27;,filter:&#x27;contrast(1.7) blur(4px)&#x27;},{opacity:1,transform:&#x27;scale(1)&#x27;,filter:&#x27;contrast(1.7) blur(0)&#x27;}],{duration:700,delay:200,easing:E,fill:&#x27;both&#x27;});
+ im.animate([{opacity:0,transform:&#x27;scale(.97)&#x27;,filter:&#x27;contrast(&#x27;+ink+&#x27;) blur(4px)&#x27;},{opacity:1,transform:&#x27;scale(1)&#x27;,filter:&#x27;contrast(&#x27;+ink+&#x27;) blur(0)&#x27;}],{duration:700,delay:200,easing:E,fill:&#x27;both&#x27;});
  if(old){old.animate([{opacity:1},{opacity:0,transform:&#x27;scale(.98)&#x27;}],{duration:260,fill:&#x27;forwards&#x27;}).onfinish=()=&gt;old.remove();}}
 
 let busy=false;
