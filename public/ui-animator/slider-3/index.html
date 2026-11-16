@@ -79,11 +79,12 @@ h1{left:72px;top:268px;font-size:56px;font-weight:400;line-height:1.08;letter-sp
 .counter{left:328px;top:804px;font-size:12px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
 .arr{top:786px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:500;transition:background .25s,border-color .25s,color .25s}
 .arr span{display:inline-block;transition:transform .35s var(--E)}
-.arr.prev{left:393px;border:1px solid rgba(18,20,23,.3);color:var(--ink)}
-.arr.prev:hover{border-color:var(--ink);background:rgba(255,255,255,.55)}
+.arr{border:1px solid rgba(18,20,23,.3);color:var(--ink)}
+.arr:hover{border-color:var(--ink2);background:var(--ink2);color:#fff}
+.arr:active{transform:scale(.96)}
+.arr.prev{left:393px}
 .arr.prev:hover span{transform:translateX(-3px)}
-.arr.next{left:453px;background:var(--red);color:#fff}
-.arr.next:hover{background:#C40914}
+.arr.next{left:453px}
 .arr.next:hover span{transform:translateX(3px)}
 button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .intro{opacity:0}
@@ -137,8 +138,8 @@ button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
 &lt;script&gt;
 const SLIDES=[
- {art:&#x27;bearing&#x27;,title:&#x27;Подшипники&#x27;,s1:&#x27;Ведущие производители.&#x27;,s2:&#x27;Подбор аналога по маркировке&#x27;,next:&#x27;Далее: Резинотканевые ленты&#x27;,count:&#x27;02 / 03&#x27;,progress:152},
- {art:&#x27;belt&#x27;,title:&#x27;Резинотканевые ленты&#x27;,s1:&#x27;70 000 м² в наличии.&#x27;,s2:&#x27;Нестандартная ширина до 3 000 мм&#x27;,next:&#x27;Далее: О компании&#x27;,count:&#x27;03 / 03&#x27;,progress:228}
+ {art:&#x27;bearing&#x27;,title:&#x27;Подшипники&#x27;,s1:&#x27;Ведущие производители.&#x27;,s2:&#x27;Подбор аналога по маркировке&#x27;},
+ {art:&#x27;belt&#x27;,title:&#x27;Резинотканевые ленты&#x27;,s1:&#x27;70 000 м² в наличии.&#x27;,s2:&#x27;Нестандартная ширина до 3 000 мм&#x27;}
 ];
 const reduce=matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches;
 const NS=&#x27;http://www.w3.org/2000/svg&#x27;, E=&#x27;cubic-bezier(.22,1,.36,1)&#x27;;
@@ -225,24 +226,32 @@ function swapLine(node,text,delay){ if(reduce){node.textContent=text;return;}
   node.textContent=text; node.animate([{transform:&#x27;translateY(105%)&#x27;,opacity:0},{transform:&#x27;translateY(0)&#x27;,opacity:1}],{duration:620,delay,easing:E,fill:&#x27;forwards&#x27;});};}
 function riseLine(node,text,delay){node.textContent=text; if(reduce) return;
  node.animate([{transform:&#x27;translateY(105%)&#x27;,opacity:0},{transform:&#x27;translateY(0)&#x27;,opacity:1}],{duration:900,delay,easing:E,fill:&#x27;backwards&#x27;});}
-let barW=0;
-function setBar(w,delay){const from=barW; barW=w; tween(900,delay,easeInOut,p=&gt;$(&#x27;bar&#x27;).style.width=(from+(w-from)*p)+&#x27;px&#x27;);}
+// прогресс автосмены: красная ветвь ленты заполняет отрезок текущего слайда за 7 секунд
+const AUTO=7000, BAR_W=228, pad=n=&gt;String(n).padStart(2,&#x27;0&#x27;);
+const countText=i=&gt;pad(i+1)+&#x27; / &#x27;+pad(SLIDES.length);
+const nextText=i=&gt;&#x27;Далее: &#x27;+SLIDES[(i+1)%SLIDES.length].title;
+let prog=null, hover=false;
+function runProgress(delay){ if(prog) prog.cancel(); const N=SLIDES.length, a=current/N*BAR_W, b=(current+1)/N*BAR_W;
+ prog=$(&#x27;bar&#x27;).animate([{width:a+&#x27;px&#x27;},{width:b+&#x27;px&#x27;}],{duration:AUTO,delay:delay||0,easing:&#x27;linear&#x27;,fill:&#x27;both&#x27;});
+ if(hover||document.hidden) prog.pause();
+ prog.onfinish=()=&gt;step(1);}
 
 let current=0, busy=false;
 function show(i,first){const s=SLIDES[i];
- if(first){riseLine($(&#x27;title&#x27;),s.title,350);riseLine($(&#x27;sub1&#x27;),s.s1,470);riseLine($(&#x27;sub2&#x27;),s.s2,560);riseLine($(&#x27;nextLabel&#x27;),s.next,900);riseLine($(&#x27;counter&#x27;),s.count,950);setBar(s.progress,1000);enterArt(s.art,true);return;}
- swapLine($(&#x27;title&#x27;),s.title,0); swapLine($(&#x27;sub1&#x27;),s.s1,80); swapLine($(&#x27;sub2&#x27;),s.s2,140); swapLine($(&#x27;nextLabel&#x27;),s.next,180); swapLine($(&#x27;counter&#x27;),s.count,200);
- setBar(s.progress,150);}
+ if(first){riseLine($(&#x27;title&#x27;),s.title,350);riseLine($(&#x27;sub1&#x27;),s.s1,470);riseLine($(&#x27;sub2&#x27;),s.s2,560);riseLine($(&#x27;nextLabel&#x27;),nextText(i),900);riseLine($(&#x27;counter&#x27;),countText(i),950);runProgress(1000);enterArt(s.art,true);return;}
+ swapLine($(&#x27;title&#x27;),s.title,0); swapLine($(&#x27;sub1&#x27;),s.s1,80); swapLine($(&#x27;sub2&#x27;),s.s2,140); swapLine($(&#x27;nextLabel&#x27;),nextText(i),180); swapLine($(&#x27;counter&#x27;),countText(i),200);
+ runProgress(0);}
 function goTo(i){ if(busy||i===current) return; busy=true; const prev=SLIDES[current].art; current=i;
- leaveArt(prev); show(i,false); enterArt(SLIDES[i].art,false); setTimeout(()=&gt;busy=false,900); restartAuto();}
+ leaveArt(prev); show(i,false); enterArt(SLIDES[i].art,false); setTimeout(()=&gt;busy=false,900);}
 const step=d=&gt;goTo((current+d+SLIDES.length)%SLIDES.length);
 $(&#x27;next&#x27;).onclick=()=&gt;step(1); $(&#x27;prev&#x27;).onclick=()=&gt;step(-1);
 addEventListener(&#x27;keydown&#x27;,e=&gt;{if(e.key===&#x27;ArrowRight&#x27;)step(1); if(e.key===&#x27;ArrowLeft&#x27;)step(-1);});
 
-// автосмена раз в 7 секунд, пауза при наведении
-let timer=null, hover=false; const stage=$(&#x27;stage&#x27;);
-function restartAuto(){clearTimeout(timer); timer=setTimeout(()=&gt;{if(!hover&amp;&amp;!document.hidden) step(1); else restartAuto();},7000);}
-stage.addEventListener(&#x27;mouseenter&#x27;,()=&gt;hover=true); stage.addEventListener(&#x27;mouseleave&#x27;,()=&gt;{hover=false;restartAuto();});
+// автосмена: пауза при наведении и в фоновой вкладке, полоска при этом останавливается
+const stage=$(&#x27;stage&#x27;);
+stage.addEventListener(&#x27;mouseenter&#x27;,()=&gt;{hover=true; prog&amp;&amp;prog.pause();});
+stage.addEventListener(&#x27;mouseleave&#x27;,()=&gt;{hover=false; if(!document.hidden) prog&amp;&amp;prog.play();});
+document.addEventListener(&#x27;visibilitychange&#x27;,()=&gt;{ if(!prog) return; document.hidden||hover?prog.pause():prog.play();});
 
 // вписать 1440 в окно
 function fit(){const s=Math.min(1,innerWidth/1440); stage.style.transform=&#x27;scale(&#x27;+s+&#x27;)&#x27;; document.body.style.height=(900*s)+&#x27;px&#x27;;}
@@ -252,7 +261,7 @@ addEventListener(&#x27;resize&#x27;,fit); fit();
 document.querySelectorAll(&#x27;.intro&#x27;).forEach((n,i)=&gt;{ if(reduce){n.style.opacity=1;return;}
  n.animate([{opacity:0,transform:&#x27;translateY(8px)&#x27;},{opacity:1,transform:&#x27;none&#x27;}],{duration:700,delay:80+i*45,easing:E,fill:&#x27;forwards&#x27;});});
 if(!reduce) grid.animate([{opacity:0},{opacity:1}],{duration:900,easing:&#x27;ease-out&#x27;});
-show(0,true); restartAuto();
+show(0,true);
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
