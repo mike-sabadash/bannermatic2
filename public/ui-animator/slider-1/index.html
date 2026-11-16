@@ -96,7 +96,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 @media (prefers-reduced-motion:reduce){.js .in{opacity:1!important}}
 
 /* slider-3 additions */
-.txt{position:absolute;left:0;top:0;width:1440px;height:900px;pointer-events:none}
+.txt{position:absolute;left:0;top:0;width:1440px;height:900px;pointer-events:none;visibility:hidden}
 .txt.on{pointer-events:auto}
 .txt .mask{display:block;overflow:hidden;padding-bottom:6px;margin-bottom:-6px}
 .txt .ln2{display:block;white-space:nowrap;will-change:transform}
@@ -359,7 +359,6 @@ document.addEventListener(&#x27;visibilitychange&#x27;,()=&gt;{ if(!prog) return
 
 // first show
 function intro(){document.body.classList.remove(&#x27;js&#x27;);
- txts.forEach((t,k)=&gt;{ if(k) {t.style.visibility=&#x27;hidden&#x27;;} });
  if(!reduce){
   V.forEach((d,i)=&gt;anim(d,[{transform:&#x27;scaleY(0)&#x27;},{transform:&#x27;scaleY(1)&#x27;}],{duration:1100,delay:i*35,easing:EO}));
   H.forEach((d,i)=&gt;anim(d,[{transform:&#x27;scaleX(0)&#x27;},{transform:&#x27;scaleX(1)&#x27;}],{duration:1300,delay:120+i*45,easing:EO}));
