@@ -264,7 +264,7 @@ setContent(0,true); render(); restartAuto(); setTimeout(()=&gt;{const h=document
 <script>
 const browser=document.querySelector('.browser'), viewport=document.querySelector('.viewport'), frame=document.querySelector('iframe'), full=document.querySelector('#fullscreen');
 // hidden:true keeps a slider in the page but out of the list; set it to false to bring it back.
-const SLIDERS={'slider-1':{title:'BELT IMPEX — hero · Крупнейший поставщик',h:900,doc:null},'slider-2':{title:'BELT IMPEX — homepage slider',h:1000,doc:frame.srcdoc},'slider-3':{title:'BELT IMPEX — слайдер: о компании, резинотканевые ленты, подшипники',h:900,doc:null}};
+const SLIDERS={'slider-1':{title:'BELT IMPEX — hero-слайдер: о компании, резинотканевые ленты, подшипники',h:900,doc:null},'slider-2':{title:'BELT IMPEX — homepage slider',h:1000,doc:frame.srcdoc},'slider-3':{title:'BELT IMPEX — слайдер (черновик, скрыт)',h:900,doc:null,hidden:true}};
 const VISIBLE=Object.keys(SLIDERS).filter(k=>!SLIDERS[k].hidden), DEFAULT=VISIBLE[0];
 const picker=document.querySelector('#slider'), status=document.querySelector('.status');
 for(const k of VISIBLE){const o=document.createElement('option');o.value=k;o.textContent='baltimpex/'+k;picker.append(o);}
