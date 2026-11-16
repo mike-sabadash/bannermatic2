@@ -81,7 +81,7 @@ function loop(t){const dt=Math.min(.05,(t-lastT)/1000); lastT=t;
   if(!W) measure(); if(W) off=((off%W)+W)%W;
   track.style.transform=&#x27;translate3d(&#x27;+(-off).toFixed(2)+&#x27;px,0,0)&#x27;;
   const cp=(-off%26).toFixed(2)+&#x27;px 0&#x27;; document.getElementById(&#x27;ct&#x27;).style.backgroundPosition=cp; document.getElementById(&#x27;cb&#x27;).style.backgroundPosition=cp;
-  ang+=vel*dt/R*180/Math.PI; G.setAttribute(&#x27;transform&#x27;,&#x27;rotate(&#x27;+(-ang).toFixed(3)+&#x27; &#x27;+CX+&#x27; &#x27;+CY+&#x27;)&#x27;);}
+  ang+=vel*dt/R*180/Math.PI; G.setAttribute(&#x27;transform&#x27;,&#x27;rotate(&#x27;+ang.toFixed(3)+&#x27; &#x27;+CX+&#x27; &#x27;+CY+&#x27;)&#x27;);}
  requestAnimationFrame(loop);}
 (document.fonts?document.fonts.ready:Promise.resolve()).then(()=&gt;{measure();requestAnimationFrame(loop);});
 &lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
