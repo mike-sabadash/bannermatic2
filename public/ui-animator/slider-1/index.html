@@ -86,7 +86,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* mark */
 .mark{position:absolute;left:0;top:0;width:1440px;height:900px;pointer-events:none;overflow:visible}
-.outline{fill:none;stroke:rgba(18,20,23,.28);stroke-width:.765;stroke-dasharray:1 1;stroke-dashoffset:1}
+.outline{fill:none;stroke:#E10A17;stroke-opacity:.85;stroke-width:.765;stroke-dasharray:1 1;stroke-dashoffset:1}
+.axis{stroke:rgba(18,20,23,.35);stroke-width:1;stroke-dasharray:18 4 2 4}.cross{stroke:#E10A17;stroke-width:1.5}#axes{opacity:0}
+#photo,#vid{filter:grayscale(1) brightness(.62) contrast(1.2)}
 
 /* intro states */
 .js .in{opacity:0}
@@ -119,6 +121,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         &lt;/g&gt;
       &lt;/g&gt;&lt;/g&gt;
     &lt;/g&gt;
+    &lt;g id=&quot;axes&quot;&gt;&lt;line class=&quot;axis&quot; x1=&quot;1035.5&quot; y1=&quot;508.4&quot; x2=&quot;1555.5&quot; y2=&quot;508.4&quot;/&gt;&lt;line class=&quot;axis&quot; x1=&quot;1295.5&quot; y1=&quot;248.4&quot; x2=&quot;1295.5&quot; y2=&quot;768.4&quot;/&gt;&lt;line class=&quot;cross&quot; x1=&quot;1283.5&quot; y1=&quot;508.4&quot; x2=&quot;1307.5&quot; y2=&quot;508.4&quot;/&gt;&lt;line class=&quot;cross&quot; x1=&quot;1295.5&quot; y1=&quot;496.4&quot; x2=&quot;1295.5&quot; y2=&quot;520.4&quot;/&gt;&lt;/g&gt;
   &lt;/svg&gt;
 
   &lt;!-- header --&gt;
@@ -140,7 +143,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   &lt;div class=&quot;a cap in&quot;&gt;отгрузок за 2026 год&lt;/div&gt;
   &lt;button class=&quot;a about in&quot; type=&quot;button&quot;&gt;О компании &lt;span class=&quot;ar&quot;&gt;→&lt;/span&gt;&lt;/button&gt;
 
-  &lt;div class=&quot;a next in&quot;&gt;Далее: Подшипники&lt;/div&gt;
+  &lt;div class=&quot;a next in&quot;&gt;Далее: Резинотканевые ленты&lt;/div&gt;
   &lt;div class=&quot;a belt in&quot;&gt;&lt;i id=&quot;prog&quot;&gt;&lt;/i&gt;&lt;/div&gt;
   &lt;div class=&quot;a count in&quot;&gt;01 / 03&lt;/div&gt;
   &lt;button class=&quot;a arr prev in&quot; type=&quot;button&quot; aria-label=&quot;Предыдущий слайд&quot;&gt;←&lt;/button&gt;
@@ -166,7 +169,7 @@ const fadeUp=(el,delay,dy=14,dur=800)=&gt;anim(el,[{opacity:0,transform:&#x27;tr
 
 function intro(){
   document.body.classList.remove(&#x27;js&#x27;);
-  if(reduce){q(&#x27;#sweep&#x27;).setAttribute(&#x27;stroke-dashoffset&#x27;,&#x27;0&#x27;);q(&#x27;#outline&#x27;).style.strokeDashoffset=&#x27;0&#x27;;q(&#x27;#tail&#x27;).setAttribute(&#x27;width&#x27;,&#x27;700&#x27;);return;}
+  if(reduce){q(&#x27;#axes&#x27;).style.opacity=1;q(&#x27;#sweep&#x27;).setAttribute(&#x27;stroke-dashoffset&#x27;,&#x27;0&#x27;);q(&#x27;#outline&#x27;).style.strokeDashoffset=&#x27;0&#x27;;q(&#x27;#tail&#x27;).setAttribute(&#x27;width&#x27;,&#x27;700&#x27;);return;}
   // grid draws
   V.forEach((d,i)=&gt;anim(d,[{transform:&#x27;scaleY(0)&#x27;},{transform:&#x27;scaleY(1)&#x27;}],{duration:1100,delay:i*35,easing:EO}));
   H.forEach((d,i)=&gt;anim(d,[{transform:&#x27;scaleX(0)&#x27;},{transform:&#x27;scaleX(1)&#x27;}],{duration:1300,delay:120+i*45,easing:EO}));
@@ -188,6 +191,7 @@ function intro(){
   anim(q(&#x27;#outline&#x27;),[{strokeDashoffset:1},{strokeDashoffset:0}],{duration:2600,delay:200,easing:&#x27;cubic-bezier(.45,0,.2,1)&#x27;});
   anim(q(&#x27;#sweep&#x27;),[{strokeDashoffset:1},{strokeDashoffset:0}],{duration:1500,delay:450,easing:&#x27;cubic-bezier(.55,0,.25,1)&#x27;});
   T0=performance.now();
+  anim(q(&#x27;#axes&#x27;),[{opacity:0},{opacity:1}],{duration:800,delay:1300});
 }
 
 function countUp(el,to,dur,delay){
