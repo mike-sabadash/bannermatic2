@@ -59,7 +59,7 @@ function fit(){const s=Math.min(1,innerWidth/1440);stage.style.transform=s&lt;1?
 addEventListener(&#x27;resize&#x27;,fit);fit();
 // шестерня: сплошной обод + прямоугольные зубцы (как в макете), цвет ленты
 const NS=&#x27;http://www.w3.org/2000/svg&#x27;, G=document.getElementById(&#x27;rot&#x27;);
-const CX=1420, CY=274, R=230, RW=12.56, TN=60, TH=15, TW=12;
+const CX=1560, CY=274, R=230, RW=12.56, TN=60, TH=15, TW=12;
 const ring=document.createElementNS(NS,&#x27;circle&#x27;); ring.setAttribute(&#x27;cx&#x27;,CX); ring.setAttribute(&#x27;cy&#x27;,CY); ring.setAttribute(&#x27;r&#x27;,R); ring.setAttribute(&#x27;fill&#x27;,&#x27;none&#x27;); ring.setAttribute(&#x27;stroke&#x27;,&#x27;#30353A&#x27;); ring.setAttribute(&#x27;stroke-width&#x27;,RW); G.appendChild(ring);
 for(let k=0;k&lt;TN;k++){const t=document.createElementNS(NS,&#x27;rect&#x27;); t.setAttribute(&#x27;x&#x27;,CX-R-RW/2-TH+1); t.setAttribute(&#x27;y&#x27;,CY-TW/2); t.setAttribute(&#x27;width&#x27;,TH); t.setAttribute(&#x27;height&#x27;,TW); t.setAttribute(&#x27;fill&#x27;,&#x27;#30353A&#x27;); t.setAttribute(&#x27;transform&#x27;,&#x27;rotate(&#x27;+(k*360/TN)+&#x27; &#x27;+CX+&#x27; &#x27;+CY+&#x27;)&#x27;); G.appendChild(t);}
 // лента: бесконечная бегущая строка
