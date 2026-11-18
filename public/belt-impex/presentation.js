@@ -7,10 +7,14 @@ const status = document.querySelector('#status');
 const retry = document.querySelector('#retry');
 const fullscreen = document.querySelector('#fullscreen');
 const heights = { 1: 12234, 2: 13854, 3: 13510 };
-const selected = new URLSearchParams(location.search).get('concept');
-const number = Object.hasOwn(heights, selected) ? selected : '1';
+const links = document.querySelectorAll('#viewer nav a');
+let currentLoad = 0;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-document.querySelector(`a[href="?concept=${number}"]`).setAttribute('aria-current', 'page');
+
+function selectedConcept() {
+  const selected = new URLSearchParams(location.search).get('concept');
+  return Object.hasOwn(heights, selected) ? selected : '1';
+}
 
 function setProgress(value) {
   track.classList.remove('indeterminate');
@@ -19,13 +23,13 @@ function setProgress(value) {
   percentage.value = `${value}%`;
 }
 
-function download(url) {
+function download(url, loadId) {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
     request.open('GET', url);
     request.responseType = 'blob';
     request.onprogress = event => {
-      if (event.lengthComputable && event.total > 0) {
+      if (loadId === currentLoad && event.lengthComputable && event.total > 0) {
         setProgress(Math.min(99, Math.floor(100 * event.loaded / event.total)));
       }
     };
@@ -39,6 +43,15 @@ function download(url) {
 }
 
 async function loadConcept() {
+  const loadId = ++currentLoad;
+  const number = selectedConcept();
+  loader.classList.remove('done');
+  main.replaceChildren();
+  window.scrollTo(0, 0);
+  for (const link of links) {
+    if (link.search === `?concept=${number}`) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  }
   retry.hidden = true;
   status.textContent = '';
   setProgress(0);
@@ -52,25 +65,38 @@ async function loadConcept() {
     const image = new Image(1440, heights[number]);
     image.alt = `BELT IMPEX — концепция ${number}, полный макет`;
     const asset = `assets/concept-${number}.png`;
-    if (location.protocol !== 'file:') objectUrl = URL.createObjectURL(await download(asset));
+    if (location.protocol !== 'file:') objectUrl = URL.createObjectURL(await download(asset, loadId));
+    if (loadId !== currentLoad) return;
     image.src = objectUrl ?? asset;
     await image.decode();
+    if (loadId !== currentLoad) return;
     if (image.naturalWidth !== 2880 || image.naturalHeight !== 2 * heights[number]) throw new Error('Unexpected Retina frame dimensions');
     main.replaceChildren(image);
     setProgress(100);
     if (!reduced.matches) await new Promise(resolve => setTimeout(resolve, 380));
-    loader.classList.add('done');
+    if (loadId === currentLoad) loader.classList.add('done');
   } catch {
+    if (loadId !== currentLoad) return;
     setProgress(0);
     status.textContent = 'Не удалось загрузить макет.';
     retry.hidden = false;
   } finally {
     if (objectUrl) URL.revokeObjectURL(objectUrl);
-    main.setAttribute('aria-busy', 'false');
+    if (loadId === currentLoad) main.setAttribute('aria-busy', 'false');
   }
 }
 
 retry.addEventListener('click', loadConcept);
+for (const link of links) {
+  link.addEventListener('click', event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    if (link.hasAttribute('aria-current')) return;
+    history.pushState(null, '', link.href);
+    loadConcept();
+  });
+}
+window.addEventListener('popstate', loadConcept);
 if (document.fullscreenEnabled) {
   fullscreen.hidden = false;
   fullscreen.addEventListener('click', async () => {
