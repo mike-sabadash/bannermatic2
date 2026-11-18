@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BELT IMPEX — концепции</title>
+<style>
+* { box-sizing: border-box }
+body { margin: 0; font: 14px Onest, system-ui, sans-serif }
+header { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 8px clamp(12px, 5vw, 72px); background: #ebedee; border-bottom: 1px solid #d2d5d7; color: #101113 }
+header strong { font-size: 12px; letter-spacing: .08em }
+header strong::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-inline-end: 7px; vertical-align: 2px; background: #e50012 }
+nav { display: flex; gap: 4px }
+nav a, #fullscreen { min-height: 36px; border: 1px solid #a4a9ad; color: inherit; background: transparent; font: inherit; cursor: pointer }
+nav a { display: grid; place-items: center; min-width: 36px; text-decoration: none; font-variant-numeric: tabular-nums }
+nav a[aria-current] { color: white; background: #d90010; border-color: #d90010 }
+#fullscreen { margin-inline-start: auto; padding: 0 12px; color: white; background: #101113; border-color: #101113 }
+#fullscreen::before { content: "⛶"; margin-inline-end: 8px }
+nav a:focus-visible, #fullscreen:focus-visible { outline: 2px solid #101113; outline-offset: 3px }
+main img { display: block; width: 100%; height: auto }
+:fullscreen main img { max-width: 1440px; margin-inline: auto }
+:fullscreen { background: #ebedee; overflow: auto }
+.stage { position: relative; display: flow-root }
+html { scrollbar-gutter: stable }
+header { position: sticky; top: 0; z-index: 4 }
+body:has(#loader:not(.done)) { background: #ebedee; overflow: hidden }
+#loader { position: fixed; z-index: 3; inset: var(--stage-top, 0px) 0 0; display: grid; place-items: center; background: #ebedee; visibility: visible }
+#loader:has(#loader-header) { right: var(--scrollbar-width, 0px) }
+#loader-header { position: absolute; z-index: 1; inset: 0 0 auto; width: 100%; height: auto; margin-inline: auto }
+:fullscreen #loader-header { max-width: 1440px }
+#loader.done { visibility: hidden; pointer-events: none }
+#art { position: relative; width: min(100%, 124dvh); aspect-ratio: 1440 / 1000; background: url('assets/preloader.png') center / contain no-repeat; container-type: inline-size; clip-path: inset(11.2% 0 0) }
+#track { position: absolute; top: 70%; left: 33.333%; width: 33.334%; height: .32%; background: #c5c9cc }
+#fill { display: block; height: 100%; width: 100%; transform: scaleX(0); transform-origin: left; background: #e50012; transition: transform .35s ease-out }
+#track.indeterminate { overflow: hidden }
+#track.indeterminate #fill { width: 30%; animation: loading 1s ease-in-out infinite alternate }
+@keyframes loading { from { translate: 0 } to { translate: 233% } }
+output { position: absolute; top: 71.7%; right: 33.333%; background: #ebedee; color: #262d35; text-align: right; min-width: 4ch; font-size: max(12px, 1.67cqw); font-variant-numeric: tabular-nums }
+#status:not(:empty), #retry:not([hidden]) { position: absolute; background: white; padding: 8px }
+#status { bottom: 15% }
+#retry { bottom: 9% }
+@media (prefers-reduced-motion: reduce) { #loader, #loader.done, #fill { transition: none } }
+@media (prefers-reduced-motion: reduce) { #track.indeterminate #fill { animation: none; transform: scaleX(1) !important } }
+</style>
+<script src="presentation.js" defer></script>
+<header>
+  <strong>BELT IMPEX</strong>
+  <nav aria-label="Концепции">
+    <a href="?concept=1" aria-label="Концепция 1">01</a>
+    <a href="?concept=2" aria-label="Концепция 2">02</a>
+    <a href="?concept=3" aria-label="Концепция 3">03</a>
+  </nav>
+  <button id="fullscreen" type="button" hidden>На весь экран</button>
+</header>
+<div class="stage">
+<main aria-busy="true"></main>
+<section id="loader" aria-label="Загрузка концепции">
+  <img id="loader-header" alt="" width="1440" height="112">
+  <div id="art">
+    <div id="track" role="progressbar" aria-label="Загрузка макета" aria-valuenow="0"><span id="fill"></span></div>
+    <output aria-hidden="true">0%</output>
+  </div>
+  <p id="status" role="status"></p>
+  <button id="retry" type="button" hidden>Повторить</button>
+</section>
+</div>
+<noscript>Для просмотра презентации включите JavaScript.</noscript>
+</html>
