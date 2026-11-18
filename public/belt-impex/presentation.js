@@ -10,15 +10,6 @@ const heights = { 1: 12234, 2: 13854, 3: 13510 };
 const selected = new URLSearchParams(location.search).get('concept');
 const number = Object.hasOwn(heights, selected) ? selected : '1';
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-const header = document.querySelector('header');
-function alignLoader() {
-  loader.style.setProperty('--stage-top', `${header.getBoundingClientRect().bottom}px`);
-  loader.style.setProperty('--scrollbar-width', `${innerWidth - document.documentElement.clientWidth}px`);
-}
-alignLoader();
-new ResizeObserver(alignLoader).observe(header);
-window.addEventListener('resize', alignLoader);
-document.querySelector('#loader-header').src = `assets/header-${number}.png`;
 document.querySelector(`a[href="?concept=${number}"]`).setAttribute('aria-current', 'page');
 
 function setProgress(value) {
@@ -87,11 +78,12 @@ if (document.fullscreenEnabled) {
       if (document.fullscreenElement) await document.exitFullscreen();
       else await document.documentElement.requestFullscreen();
     } catch {
-      fullscreen.textContent = 'Полный экран недоступен';
+      fullscreen.title = 'Полный экран недоступен';
     }
   });
   document.addEventListener('fullscreenchange', () => {
-    fullscreen.textContent = document.fullscreenElement ? 'Выйти из полноэкранного режима' : 'На весь экран';
+    fullscreen.title = document.fullscreenElement ? 'Выйти из полноэкранного режима' : 'На весь экран';
+    fullscreen.setAttribute('aria-label', fullscreen.title);
   });
 }
 loadConcept();
