@@ -78,11 +78,12 @@ if (document.fullscreenEnabled) {
       if (document.fullscreenElement) await document.exitFullscreen();
       else await document.documentElement.requestFullscreen();
     } catch {
-      fullscreen.textContent = 'Полный экран недоступен';
+      fullscreen.title = 'Полный экран недоступен';
     }
   });
   document.addEventListener('fullscreenchange', () => {
-    fullscreen.textContent = document.fullscreenElement ? 'Выйти из полноэкранного режима' : 'На весь экран';
+    fullscreen.title = document.fullscreenElement ? 'Выйти из полноэкранного режима' : 'На весь экран';
+    fullscreen.setAttribute('aria-label', fullscreen.title);
   });
 }
 loadConcept();

@@ -6,24 +6,21 @@
 <style>
 * { box-sizing: border-box }
 body { margin: 0; font: 14px Onest, system-ui, sans-serif }
-header { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 8px clamp(12px, 5vw, 72px); background: #ebedee; border-bottom: 1px solid #d2d5d7; color: #101113 }
-header strong { font-size: 12px; letter-spacing: .08em }
-header strong::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-inline-end: 7px; vertical-align: 2px; background: #e50012 }
-nav { display: flex; gap: 4px }
-nav a, #fullscreen { min-height: 36px; border: 1px solid #a4a9ad; color: inherit; background: transparent; font: inherit; cursor: pointer }
-nav a { display: grid; place-items: center; min-width: 36px; text-decoration: none; font-variant-numeric: tabular-nums }
-nav a[aria-current] { color: white; background: #d90010; border-color: #d90010 }
-#fullscreen { margin-inline-start: auto; padding: 0 12px; color: white; background: #101113; border-color: #101113 }
-#fullscreen::before { content: "⛶"; margin-inline-end: 8px }
-nav a:focus-visible, #fullscreen:focus-visible { outline: 2px solid #101113; outline-offset: 3px }
+#viewer { position: fixed; z-index: 4; right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 8px; max-width: calc(100% - 24px); padding: 5px 6px 5px 10px; color: #fff; background: #202124; border: 1px solid #515258; border-radius: 10px; box-shadow: 0 3px 14px #0004 }
+#viewer strong { font-size: 12px }
+#viewer nav { display: flex; gap: 2px }
+#viewer a, #fullscreen { min-height: 36px; min-width: 36px; border: 0; border-radius: 5px; color: inherit; background: transparent; font: inherit; cursor: pointer }
+#viewer a { display: grid; place-items: center; text-decoration: none; font-variant-numeric: tabular-nums }
+#viewer a:hover, #fullscreen:hover { background: #414247 }
+#viewer a[aria-current] { color: #202124; background: #f5f5f6 }
+#fullscreen { border-left: 1px solid #515258; font-size: 20px }
+#viewer :focus-visible { outline: 2px solid #fff; outline-offset: 1px }
 main img { display: block; width: 100%; height: auto }
-:fullscreen main img { max-width: 1440px; margin-inline: auto }
 :fullscreen { background: #ebedee; overflow: auto }
 .stage { position: relative; display: flow-root }
 html { scrollbar-gutter: stable }
-header { position: sticky; top: 0; z-index: 4 }
 body:has(#loader:not(.done)) { background: #ebedee; overflow: hidden }
-body:has(#loader:not(.done)) header { visibility: hidden }
+body:has(#loader:not(.done)) #viewer { visibility: hidden }
 #loader { position: fixed; z-index: 5; inset: 0; display: grid; place-items: center; background: #ebedee; visibility: visible }
 #loader.done { visibility: hidden; pointer-events: none }
 #art { position: relative; width: min(100%, 124dvh); aspect-ratio: 1440 / 1000; background: url('assets/preloader.png') center / contain no-repeat; container-type: inline-size; clip-path: inset(11.2% 0 0) }
@@ -39,16 +36,16 @@ output { position: absolute; top: 71.7%; right: 33.333%; background: #ebedee; co
 @media (prefers-reduced-motion: reduce) { #loader, #loader.done, #fill { transition: none } }
 @media (prefers-reduced-motion: reduce) { #track.indeterminate #fill { animation: none; transform: scaleX(1) !important } }
 </style>
-<script src="presentation.js?v=2" defer></script>
-<header>
-  <strong>BELT IMPEX</strong>
+<script src="presentation.js?v=3" defer></script>
+<aside id="viewer" aria-label="Управление презентацией">
+  <strong>Концепции</strong>
   <nav aria-label="Концепции">
     <a href="?concept=1" aria-label="Концепция 1">01</a>
     <a href="?concept=2" aria-label="Концепция 2">02</a>
     <a href="?concept=3" aria-label="Концепция 3">03</a>
   </nav>
-  <button id="fullscreen" type="button" hidden>На весь экран</button>
-</header>
+  <button id="fullscreen" type="button" aria-label="На весь экран" title="На весь экран" hidden>⛶</button>
+</aside>
 <div class="stage">
 <main aria-busy="true"></main>
 <section id="loader" aria-label="Загрузка концепции">
