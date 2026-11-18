@@ -23,10 +23,8 @@ main img { display: block; width: 100%; height: auto }
 html { scrollbar-gutter: stable }
 header { position: sticky; top: 0; z-index: 4 }
 body:has(#loader:not(.done)) { background: #ebedee; overflow: hidden }
-#loader { position: fixed; z-index: 3; inset: var(--stage-top, 0px) 0 0; display: grid; place-items: center; background: #ebedee; visibility: visible }
-#loader:has(#loader-header) { right: var(--scrollbar-width, 0px) }
-#loader-header { position: absolute; z-index: 1; inset: 0 0 auto; width: 100%; height: auto; margin-inline: auto }
-:fullscreen #loader-header { max-width: 1440px }
+body:has(#loader:not(.done)) header { visibility: hidden }
+#loader { position: fixed; z-index: 5; inset: 0; display: grid; place-items: center; background: #ebedee; visibility: visible }
 #loader.done { visibility: hidden; pointer-events: none }
 #art { position: relative; width: min(100%, 124dvh); aspect-ratio: 1440 / 1000; background: url('assets/preloader.png') center / contain no-repeat; container-type: inline-size; clip-path: inset(11.2% 0 0) }
 #track { position: absolute; top: 70%; left: 33.333%; width: 33.334%; height: .32%; background: #c5c9cc }
@@ -41,7 +39,7 @@ output { position: absolute; top: 71.7%; right: 33.333%; background: #ebedee; co
 @media (prefers-reduced-motion: reduce) { #loader, #loader.done, #fill { transition: none } }
 @media (prefers-reduced-motion: reduce) { #track.indeterminate #fill { animation: none; transform: scaleX(1) !important } }
 </style>
-<script src="presentation.js" defer></script>
+<script src="presentation.js?v=2" defer></script>
 <header>
   <strong>BELT IMPEX</strong>
   <nav aria-label="Концепции">
@@ -54,7 +52,6 @@ output { position: absolute; top: 71.7%; right: 33.333%; background: #ebedee; co
 <div class="stage">
 <main aria-busy="true"></main>
 <section id="loader" aria-label="Загрузка концепции">
-  <img id="loader-header" alt="" width="1440" height="112">
   <div id="art">
     <div id="track" role="progressbar" aria-label="Загрузка макета" aria-valuenow="0"><span id="fill"></span></div>
     <output aria-hidden="true">0%</output>
